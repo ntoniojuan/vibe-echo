@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECHO Dashboard - Sent</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed-dim": "#c8c6c2",
+                "surface-container-highest": "#d8e3fa",
+                "on-secondary-fixed": "#0b1d2d",
+                "surface-container-high": "#dee8ff",
+                "surface-container": "#e7eeff",
+                "primary-fixed-dim": "#b0ceb4",
+                "inverse-primary": "#b0ceb4",
+                "primary-container": "#8daa91",
+                "outline": "#737972",
+                "error-container": "#ffdad6",
+                "primary": "#4a654f",
+                "on-primary-container": "#253f2b",
+                "surface": "#f9f9ff",
+                "on-secondary-container": "#556679",
+                "on-secondary": "#ffffff",
+                "surface-variant": "#d8e3fa",
+                "surface-bright": "#f9f9ff",
+                "on-background": "#111c2c",
+                "on-primary-fixed": "#062010",
+                "tertiary-container": "#a4a39f",
+                "surface-dim": "#cfdaf1",
+                "secondary": "#4f6073",
+                "on-error": "#ffffff",
+                "on-surface-variant": "#424842",
+                "inverse-on-surface": "#ebf1ff",
+                "inverse-surface": "#263142",
+                "secondary-fixed-dim": "#b7c8de",
+                "on-primary": "#ffffff",
+                "surface-container-low": "#f0f3ff",
+                "on-surface": "#111c2c",
+                "on-tertiary-container": "#393936",
+                "on-primary-fixed-variant": "#334d38",
+                "tertiary": "#5e5e5b",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "background": "#f9f9ff",
+                "tertiary-fixed": "#e4e2dd",
+                "on-error-container": "#93000a",
+                "secondary-container": "#d2e4fb",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed": "#1b1c19",
+                "outline-variant": "#c2c8c0",
+                "on-secondary-fixed-variant": "#38485a",
+                "secondary-fixed": "#d2e4fb",
+                "primary-fixed": "#cceacf",
+                "on-tertiary-fixed-variant": "#474744",
+                "surface-tint": "#4a654f"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "base": "4px",
+                "md": "1.5rem",
+                "sm": "1rem",
+                "gutter": "24px",
+                "xl": "3rem",
+                "container-max": "1200px",
+                "lg": "2rem",
+                "xs": "0.5rem"
+        },
+        "fontFamily": {
+                "timer-display": [
+                        "Manrope"
+                ],
+                "body-lg": [
+                        "Manrope"
+                ],
+                "label-caps": [
+                        "Manrope"
+                ],
+                "h2": [
+                        "Manrope"
+                ],
+                "h1": [
+                        "Manrope"
+                ],
+                "body-md": [
+                        "Manrope"
+                ],
+                "h3": [
+                        "Manrope"
+                ]
+        },
+        "fontSize": {
+                "timer-display": [
+                        "24px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "h2": [
+                        "28px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h1": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "h3": [
+                        "22px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+    body {
+        background-color: theme('colors.background');
+        color: theme('colors.on-background');
+    }
+</style>
+</head>
+<body class="font-body-md text-body-md antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-slate-900 dark:bg-black text-emerald-400 font-manrope text-sm font-medium h-screen w-60 hidden md:flex flex-col fixed left-0 top-0 shadow-2xl flex flex-col h-full py-8 z-40">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-black text-orange-50 tracking-widest">ECHO</h1>
+<p class="text-xs text-slate-400 mt-1">MedGrocer Performance</p>
+</div>
+<div class="px-6 mb-8">
+<button class="w-full bg-primary text-on-primary font-body-md text-body-md py-2 px-4 rounded-full hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Evaluation
+            </button>
+</div>
+<ul class="flex-1 space-y-2">
+<li>
+<a class="text-slate-400 flex items-center px-6 py-3 hover:bg-slate-800 hover:text-orange-50 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">home</span> Home
+                </a>
+</li>
+<li>
+<a class="text-slate-400 flex items-center px-6 py-3 hover:bg-slate-800 hover:text-orange-50 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">add_circle</span> Create
+                </a>
+</li>
+<li>
+<a class="text-slate-400 flex items-center px-6 py-3 hover:bg-slate-800 hover:text-orange-50 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">leaderboard</span> Stats
+                </a>
+</li>
+<li>
+<a class="bg-emerald-500/10 text-emerald-400 border-r-4 border-emerald-400 flex items-center px-6 py-3 Active: scale-95 duration-100" href="#">
+<span class="material-symbols-outlined mr-3">account_circle</span> Profile
+                </a>
+</li>
+</ul>
+<ul class="space-y-2 mt-auto">
+<li>
+<a class="text-slate-400 flex items-center px-6 py-3 hover:bg-slate-800 hover:text-orange-50 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">settings</span> Settings
+                </a>
+</li>
+<li>
+<a class="text-slate-400 flex items-center px-6 py-3 hover:bg-slate-800 hover:text-orange-50 transition-all" href="#">
+<span class="material-symbols-outlined mr-3">logout</span> Logout
+                </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-60 h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-orange-50/80 backdrop-blur-md dark:bg-slate-900/80 text-slate-900 dark:text-orange-50 font-manrope font-semibold tracking-tight shadow-sm border-b border-slate-200/50 dark:border-slate-800 fixed top-0 w-full md:w-[calc(100%-15rem)] flex justify-between items-center px-6 h-16 z-30">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-slate-900 dark:text-orange-50 hidden md:block">ECHO Dashboard</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors Active: opacity-80 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300 transition-colors Active: opacity-80 duration-150">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A close up professional headshot of a smiling man in a business casual outfit. The lighting is bright and even, set against a neutral, warm background that aligns with a clean, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbD_AaPFfWVZirHii76gXoMcN5pV1W9YrzOUSoZ6uWRdicSWPnNWhumNiApSyQoBZQcfoZOIQo_qGSm2NmP-0mCgznIqo3gQTCYUfC4lrNbT062NqMeI_z2hQTLtgEzSNhDuVE0VXf-2a56HDAfUhxurpFs7VhXBzDQC6lm5C5IBJ6GcQ373OCHZI_kKhHUbNImYtKZChihS7ehCYqXtUKc1cECMUX0JUFeWoFj_YIsoVVVsykGS8DFwGb9ifEcaEGQfan6snUrpY"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto pt-24 pb-20 md:pb-8 px-4 md:px-8 max-w-container-max mx-auto w-full">
+<!-- Page Header & Tabs -->
+<div class="mb-8">
+<h2 class="font-h1 text-h1 text-on-background mb-6">Evaluations</h2>
+<div class="flex border-b border-surface-variant">
+<a class="px-6 py-3 font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Received</a>
+<a class="px-6 py-3 font-body-md text-body-md text-primary font-bold border-b-2 border-primary" href="#">Sent</a>
+<a class="px-6 py-3 font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Stats</a>
+</div>
+</div>
+<!-- Search & Filter Area -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(11,29,45,0.04)] p-6 mb-8 flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="relative w-full md:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-none rounded-lg font-body-md text-body-md text-on-surface focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Find teammates to evaluate" type="text"/>
+</div>
+<button class="w-full md:w-auto px-6 py-3 bg-primary-container text-on-primary-container font-label-caps text-label-caps rounded-full hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter
+                </button>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Draft -->
+<div class="bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(11,29,45,0.04)] p-6 flex flex-col border border-surface-variant">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full" data-alt="A close up portrait of a young professional woman smiling warmly. She is wearing a light-colored blouse. The background is a soft, blurred office environment with warm, natural lighting that feels approachable and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYNEHFhM-nXKy-v76T9o9iFwk72mYFto-aa6eJG0U9_tPKBxnq8zUFVdwc5kXT3kqv7-ojTgpk53QFnh4DbIsZyjkDlGuyFThH_3Fdd1NPOjxAvoGSz20ELoTxGD_Z9bHn_xKIyE97FEOoUTu1VPUf_0H655bmYGLc9xy3jAowk7mZpYDmmQA1Lu7Pmt2B3lUUcdBE8XoTlPUkexXbur4XWlpb9WXDPctx8Wn4sQsfHOszHr--tGiLjJ4Nuv2sgHrZsVJ4vDH37Us"/>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Sarah Jenkins</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Product Designer</p>
+</div>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-caps text-label-caps">Draft</span>
+</div>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">psychology</span> Aptitude</span>
+<span class="text-on-surface font-semibold">Pending</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">favorite</span> Character</span>
+<span class="text-on-surface font-semibold">Pending</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">handshake</span> Effectiveness</span>
+<span class="text-on-surface font-semibold">Pending</span>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container text-on-surface font-body-md text-body-md rounded-full hover:bg-surface-container-high transition-colors">Resume Evaluation</button>
+</div>
+<!-- Card 2: Sent -->
+<div class="bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(11,29,45,0.04)] p-6 flex flex-col border border-surface-variant">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<img alt="Marcus Chen" class="w-10 h-10 rounded-full" data-alt="A professional headshot of a confident young man with glasses, looking directly at the camera. The lighting is crisp and natural, highlighting his features against a subtly blurred, warm-toned architectural background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoB-iqESeFFh6mXG0NVNg9T_Wsjn7gryK6nKEy9hadJLGqNbFwpfPmlezxM0HHTYqVqqxTgt3E_2DVcijuxeGOTmwT4wcEhztQrwAsE2xykjO_-6cm-9EQDi6awZNCAeQFv880wlH8z-pTH3b0qzG032J_3Rtt1ya8kRiy0UT_Pu-tHaNAA_GPGwDxVG5-ILRJWSho4U8sZ0MULsiDGqRq3wps8tkbSoCZEGphfIfBN9W1D3J6SD4J_ZASErtSguZ5g1XNkRQyHU0"/>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Marcus Chen</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Frontend Developer</p>
+</div>
+</div>
+<span class="text-on-surface-variant text-xs">Oct 12, 2023</span>
+</div>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">psychology</span> Aptitude</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full text-xs font-semibold">Exceeds</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">favorite</span> Character</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full text-xs font-semibold">Meets</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">handshake</span> Effectiveness</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full text-xs font-semibold">Exceeds</span>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container text-on-surface font-body-md text-body-md rounded-full hover:bg-surface-container-high transition-colors text-primary">View Details</button>
+</div>
+<!-- Card 3: Draft -->
+<div class="bg-surface-container-lowest rounded-[16px] shadow-[0_4px_20px_rgba(11,29,45,0.04)] p-6 flex flex-col border border-surface-variant">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-lg">
+                                EP
+                            </div>
+<div>
+<h3 class="font-h3 text-h3 text-on-surface">Elena Patel</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Data Analyst</p>
+</div>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full font-label-caps text-label-caps">Draft</span>
+</div>
+<div class="space-y-3 mb-6 flex-1">
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">psychology</span> Aptitude</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full text-xs font-semibold">Meets</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">favorite</span> Character</span>
+<span class="text-on-surface font-semibold">Pending</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">handshake</span> Effectiveness</span>
+<span class="text-on-surface font-semibold">Pending</span>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container text-on-surface font-body-md text-body-md rounded-full hover:bg-surface-container-high transition-colors">Resume Evaluation</button>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-orange-50/90 backdrop-blur-lg dark:bg-slate-900/90 text-emerald-700 dark:text-emerald-400 font-manrope text-[10px] font-bold uppercase fixed bottom-0 w-full md:hidden rounded-t-2xl border-t border-slate-200/50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-2 pb-6">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-orange-100 dark:hover:bg-slate-800 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-orange-100 dark:hover:bg-slate-800 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">add_circle</span>
+            Create
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-orange-100 dark:hover:bg-slate-800 p-2 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">leaderboard</span>
+            Stats
+        </a>
+<a class="flex flex-col items-center justify-center bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-100 rounded-xl px-4 py-1 Active: scale-90 duration-200" href="#">
+<span class="material-symbols-outlined mb-1">account_circle</span>
+            Profile
+        </a>
+</nav>
+</body></html>

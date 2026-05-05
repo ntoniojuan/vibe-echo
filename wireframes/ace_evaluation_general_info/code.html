@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedGrocer ECHO - Step 1: General Info</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed-dim": "#b7c8de",
+                        "on-primary-fixed-variant": "#334d38",
+                        "on-background": "#111c2c",
+                        "secondary": "#4f6073",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#e4e2dd",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e7eeff",
+                        "outline-variant": "#c2c8c0",
+                        "on-tertiary-container": "#393936",
+                        "on-secondary-fixed": "#0b1d2d",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "surface-container-low": "#f0f3ff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d8e3fa",
+                        "primary": "#4a654f",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-surface-variant": "#424842",
+                        "on-secondary-container": "#556679",
+                        "primary-fixed": "#cceacf",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#062010",
+                        "secondary-fixed": "#d2e4fb",
+                        "on-surface": "#111c2c",
+                        "inverse-on-surface": "#ebf1ff",
+                        "on-secondary-fixed-variant": "#38485a",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9ff",
+                        "tertiary-container": "#a4a39f",
+                        "on-primary-container": "#253f2b",
+                        "inverse-surface": "#263142",
+                        "secondary-container": "#d2e4fb",
+                        "outline": "#737972",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b0ceb4",
+                        "surface-tint": "#4a654f",
+                        "surface-container-highest": "#d8e3fa",
+                        "surface-container-high": "#dee8ff",
+                        "surface-bright": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#5e5e5b",
+                        "primary-fixed-dim": "#b0ceb4",
+                        "surface-dim": "#cfdaf1",
+                        "surface": "#f9f9ff",
+                        "primary-container": "#8daa91"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1200px",
+                        "lg": "2rem",
+                        "gutter": "24px",
+                        "base": "4px",
+                        "xl": "3rem",
+                        "sm": "1rem",
+                        "md": "1.5rem",
+                        "xs": "0.5rem"
+                    },
+                    fontFamily: {
+                        "h2": ["Manrope"],
+                        "timer-display": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    fontSize: {
+                        "h2": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "timer-display": ["24px", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h3": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- TopAppBar (Mobile only for this layout) -->
+<header class="md:hidden fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 h-16 bg-[#FDFCF0] border-b border-stone-200 shadow-sm">
+<div class="text-lg font-black text-[#1A202C]">Project ECHO</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#1A202C]" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-[#1A202C]" data-icon="help_outline">help_outline</span>
+<img alt="User avatar" class="w-8 h-8 rounded-full" data-alt="A small circular avatar portrait of a professional individual against a bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJNzTroCuCXuUfC4yCNjiuNdquzCpEPQEkvJPizi8UHQN4BQ5hfr0gCdT6oW8RaklR1h3-zjvHU7Z5QH24dcEfmZ_nWexAULAQeN_u2lrXrGwFsvQclodBF74jgNkbEHQXOTS-WuJ1i2Ep0B4xIa1s0kzE68WcKioJ5RzqkTQPDlIcgkC0i8KCDnpJH9WU10oTm5qkdBjKNNp4div4KYRVyrb1kRnpVQD-Go3SSrRI9Rsu4g3R85y5Qj8d5gF_T_PWx4iAtxx_fdc"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col pt-6 fixed left-0 top-0 h-full w-[240px] bg-[#1A202C] text-white border-r border-slate-800 shadow-xl z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<img alt="Organization Logo" class="w-8 h-8 rounded-lg" data-alt="A sleek, modern corporate logo featuring abstract geometric shapes in sage green and deep navy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4cSdf881H19ZWj-C5uoPGCLurgo8J_PugJlCnVuEh6e1aIGrTeOhtae0AjlphAn8pIX2KxIMLqNMOEqSFIWv37-UirJHzoPaj1gMYc1Uaza2oA41vVKuWdwlYtuc_o8QX4HgQeB4oV1kSPO3zKwuMkyWQNFUsWQ04TeHYJhozkKOjN0AmF_nGeDmlK1wnJKHf8z762xrMJMLHVPkMpM6EtnSRkr0dBS8EIgTub7CoqMWAR8JG5MPwryRGXgDE0OrQrvU7fWYAffY"/>
+<div>
+<div class="text-xl font-bold text-[#8DAA91]">MedGrocer ECHO</div>
+<div class="font-manrope text-sm font-medium text-slate-400">Capability Evaluation</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-manrope text-sm font-medium">Home</span>
+</a>
+<a class="bg-[#8DAA91]/20 text-[#8DAA91] border-r-4 border-[#8DAA91] px-4 py-3 flex items-center gap-3 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined fill" data-icon="add_circle" data-weight="fill">add_circle</span>
+<span class="font-manrope text-sm font-medium">Create</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-manrope text-sm font-medium">Stats</span>
+</a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-sm font-medium">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[240px] pt-16 md:pt-0 pb-20 md:pb-0 px-4 md:px-8 lg:px-12 xl:px-16 max-w-container-max mx-auto w-full min-h-screen flex flex-col">
+<!-- Header Section -->
+<div class="py-8 border-b border-surface-container-high mb-8">
+<p class="font-label-caps text-label-caps text-primary tracking-wider uppercase mb-2">Step 1 of 5</p>
+<h1 class="font-h1 text-h1 text-on-background mb-3">General Information</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Establish the foundation for this capability evaluation. Select the teammate and define the review parameters.</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-gutter flex-1">
+<!-- Left Column: Form -->
+<div class="flex-1 space-y-8">
+<!-- Bento Card: Teammate Selection -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(17,28,44,0.04)] border border-surface-container-high transition-all duration-300 hover:shadow-[0_8px_30px_rgba(17,28,44,0.08)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+<h2 class="font-h3 text-h3 text-on-background mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="person_search">person_search</span>
+                        Select Teammate
+                    </h2>
+<div class="space-y-4">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase" for="teammate">Employee Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow font-body-md text-body-md text-on-background placeholder:text-outline/60" id="teammate" placeholder="Search by name or department..." type="text"/>
+</div>
+</div>
+<!-- Suggested Teammates Chips -->
+<div class="flex flex-wrap gap-2 pt-2">
+<button class="px-4 py-1.5 rounded-full bg-surface-container-low border border-surface-variant text-on-surface-variant font-body-md text-sm hover:bg-surface-container transition-colors flex items-center gap-2">
+<img alt="Sarah J." class="w-5 h-5 rounded-full" data-alt="A small circular avatar of a professional woman smiling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeNhhS-pk7vczyu8oPfw6DoziT3zycfz9WgH0aMLyQmakcgcHBzeovggHqYgt-4beJ4llKzvXg2MIXqddh9dq8qqM98aKa1ca41rnsi_36VshHwOZmx9mpYwqrOMlSK7gMjEhq-BHPluXKMfnUn03_ov8Ur9-Th6-zR_2-VvCGe5lVbeS7Rp_1cdnOFD87JO7Fjtj5snfC77mRchCJqhCrI7RPNjKWiooCisw_F6D9O8bLqMuFx5cXQbyFgm-NHjztoGhr_vaRudM"/>
+                                Sarah Jenkins
+                            </button>
+<button class="px-4 py-1.5 rounded-full bg-surface-container-low border border-surface-variant text-on-surface-variant font-body-md text-sm hover:bg-surface-container transition-colors flex items-center gap-2">
+<img alt="Marcus T." class="w-5 h-5 rounded-full" data-alt="A small circular avatar of a professional man with short hair." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoDVFJfay-p2f5f1XivYXOGSbGRqeEBKRAIaOGmxqJkMbJWS3je1iXieugfpMurt6Vvahx6kQODkmlJisCU7LWrpqcL4992voR0WdoZHWEqcLh_aMczrK-vzfukw-nkYxM6pkp8Dc1GNA0sSOSeXShaKS9KXyoKwz1ZakiEZyTlrYD7SBGNW2TIHtdA-NeJjSNysBQMtv9r49nDCYPkXIkeiAbfP78uSDv4oH6l0y1gnrbSsXHJf1dwFCUMvPPPGXZN76PzlQaqIw"/>
+                                Marcus Thorne
+                            </button>
+</div>
+</div>
+</section>
+<!-- Bento Card: Evaluation Details -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(17,28,44,0.04)] border border-surface-container-high transition-all duration-300 hover:shadow-[0_8px_30px_rgba(17,28,44,0.08)]">
+<h2 class="font-h3 text-h3 text-on-background mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+                        Evaluation Parameters
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase" for="period">Evaluation Period</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="calendar_today">calendar_today</span>
+<select class="w-full pl-4 pr-10 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md text-body-md text-on-background" id="period">
+<option disabled="" selected="" value="">Select period</option>
+<option value="q1_2024">Q1 2024 (Jan - Mar)</option>
+<option value="q2_2024">Q2 2024 (Apr - Jun)</option>
+<option value="annual_2023">Annual 2023</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase" for="role">Current Role / Level</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="work_outline">work_outline</span>
+<select class="w-full pl-4 pr-10 py-3 rounded-lg border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md text-body-md text-on-background" id="role">
+<option disabled="" selected="" value="">Select role</option>
+<option value="l1">Associate (L1)</option>
+<option value="l2">Specialist (L2)</option>
+<option value="l3">Manager (L3)</option>
+<option value="l4">Director (L4)</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex justify-end pt-4 pb-8">
+<button class="bg-inverse-surface text-inverse-on-surface px-8 py-3 rounded-full font-body-md font-semibold hover:opacity-90 transition-opacity flex items-center gap-2 shadow-[0_4px_14px_rgba(38,49,66,0.2)]">
+                        Next Step
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Sidebar -->
+<aside class="w-full lg:w-80 space-y-6">
+<!-- Teammate History Glassmorphic Card -->
+<div class="bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-6 shadow-[0_4px_20px_rgba(17,28,44,0.04)] border border-surface-container-high sticky top-24">
+<h3 class="font-h3 text-h3 text-on-background mb-4 flex items-center gap-2 border-b border-surface-variant pb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="history">history</span>
+                        Teammate History
+                    </h3>
+<div class="space-y-6">
+<!-- History Item 1 -->
+<div class="relative pl-6 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-24px] before:w-0.5 before:bg-surface-variant last:before:hidden">
+<div class="absolute left-0 top-1 w-[24px] h-[24px] rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<div class="bg-surface rounded-lg p-4 border border-surface-variant">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-primary uppercase">Q4 2023</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">Exceeds</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2">Demonstrated exceptional leadership in the clinical deployment project. Needs slight improvement in cross-functional communication.</p>
+</div>
+</div>
+<!-- History Item 2 -->
+<div class="relative pl-6 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-[-24px] before:w-0.5 before:bg-surface-variant last:before:hidden">
+<div class="absolute left-0 top-1 w-[24px] h-[24px] rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+</div>
+<div class="bg-surface rounded-lg p-4 border border-surface-variant opacity-80">
+<div class="flex justify-between items-start mb-2">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Q3 2023</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-semibold">Meets</span>
+</div>
+<p class="font-body-md text-sm text-on-surface-variant line-clamp-2">Solid performance hitting all core metrics. Transitioned well into the new specialist role.</p>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-surface-variant text-center">
+<p class="font-body-md text-sm text-outline italic">Select a teammate to load full history.</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe pt-2 h-16 bg-[#FDFCF0]/90 backdrop-blur-md rounded-t-2xl border-t border-stone-200/50 shadow-[0_-4px_20px_rgba(26,32,44,0.04)]">
+<a class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#8DAA91] bg-[#8DAA91]/10 rounded-xl px-3 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined fill" data-icon="add_circle" data-weight="fill">add_circle</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-manrope text-[10px] font-bold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

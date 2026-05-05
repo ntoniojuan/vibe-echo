@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Step 4: Effectiveness - Project ECHO</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#b7c8de",
+                    "on-primary-fixed-variant": "#334d38",
+                    "on-background": "#111c2c",
+                    "secondary": "#4f6073",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#e4e2dd",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#e7eeff",
+                    "outline-variant": "#c2c8c0",
+                    "on-tertiary-container": "#393936",
+                    "on-secondary-fixed": "#0b1d2d",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "surface-container-low": "#f0f3ff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#d8e3fa",
+                    "primary": "#4a654f",
+                    "on-tertiary-fixed-variant": "#474744",
+                    "on-surface-variant": "#424842",
+                    "on-secondary-container": "#556679",
+                    "primary-fixed": "#cceacf",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#062010",
+                    "secondary-fixed": "#d2e4fb",
+                    "on-surface": "#111c2c",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-fixed-variant": "#38485a",
+                    "error-container": "#ffdad6",
+                    "background": "#f9f9ff",
+                    "tertiary-container": "#a4a39f",
+                    "on-primary-container": "#253f2b",
+                    "inverse-surface": "#263142",
+                    "secondary-container": "#d2e4fb",
+                    "outline": "#737972",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#b0ceb4",
+                    "surface-tint": "#4a654f",
+                    "surface-container-highest": "#d8e3fa",
+                    "surface-container-high": "#dee8ff",
+                    "surface-bright": "#f9f9ff",
+                    "error": "#ba1a1a",
+                    "tertiary": "#5e5e5b",
+                    "primary-fixed-dim": "#b0ceb4",
+                    "surface-dim": "#cfdaf1",
+                    "surface": "#f9f9ff",
+                    "primary-container": "#8daa91"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "lg": "2rem",
+                    "gutter": "24px",
+                    "base": "4px",
+                    "xl": "3rem",
+                    "sm": "1rem",
+                    "md": "1.5rem",
+                    "xs": "0.5rem"
+            },
+            "fontFamily": {
+                    "h2": ["Manrope"],
+                    "timer-display": ["Manrope"],
+                    "label-caps": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "h2": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                    "timer-display": ["24px", { "lineHeight": "1", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                    "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                    "h3": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                    "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "h1": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden antialiased">
+<!-- TopAppBar -->
+<header class="bg-[#FDFCF0] dark:bg-slate-950 text-[#1A202C] dark:text-slate-100 font-manrope font-semibold tracking-tight border-b border-stone-200 dark:border-slate-800 shadow-sm fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-8 h-16 docked full-width top-0 hover:bg-stone-100 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-center gap-4 md:pl-[240px]">
+<span class="text-lg font-black text-[#1A202C] dark:text-white">Project ECHO</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Timer excluded as per instructions -->
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A small, circular user profile avatar with a sage green background and white text displaying the letter U." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeZc1LE2ZbejZgRDV_ur0EZU9EJCWqf60iuaSwqRYtWC5_-MfChrpRk4gEuuq_5y-avhTr7QJWcsNsOTpOIiwwl-sRrzbZ6yb5Gyyb_cmolh1gyBF3OWbrfJOGQcNI7VtT6xatUKPf8AZzm0Jf6FhTTVw_M4P3KT7EtxR19gDINLhhPr-tw18Z6B8Da3LRxXK14uwniZoP9z5O_2bUKnB0pLGVwntIjiYdCDOhSmhZdd_-h78VveT26RBO9LD5c12G9KNh7BE81Bc"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-[#1A202C] dark:bg-black text-white font-manrope text-sm font-medium border-r border-slate-800 shadow-xl fixed left-0 top-0 h-full w-[240px] hidden md:flex flex-col pt-6 z-[60]">
+<div class="px-6 pb-6 mb-2 border-b border-slate-800">
+<h2 class="text-xl font-bold text-[#8DAA91] mb-1">MedGrocer ECHO</h2>
+<p class="text-xs text-slate-400">Capability Evaluation</p>
+</div>
+<div class="flex-1 flex flex-col gap-1 px-2 pt-4">
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 rounded-lg cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">home</span>
+                Home
+            </a>
+<a class="bg-[#8DAA91]/20 text-[#8DAA91] border-r-4 border-[#8DAA91] px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 rounded-lg cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+                Create
+            </a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 rounded-lg cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+                Stats
+            </a>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 rounded-lg cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined">person</span>
+                Profile
+            </a>
+</div>
+</nav>
+<!-- Main Content Layout -->
+<main class="md:pl-[240px] pt-16 pb-[140px] md:pb-24 min-h-screen flex flex-col">
+<div class="flex-1 max-w-container-max mx-auto w-full p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Form & Canvas -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary-container shadow-sm border border-primary-container/30">
+<span class="material-symbols-outlined fill text-2xl">front_hand</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Step 4 of 5</p>
+<h1 class="font-h1 text-h1 text-on-background">Effectiveness <span class="font-light text-on-surface-variant">(Hands)</span></h1>
+</div>
+</div>
+<!-- Sub-competencies List -->
+<div class="flex flex-col gap-5">
+<!-- E1: Process-focus -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high transition-all hover:shadow-[0_8px_30px_rgba(26,32,44,0.06)] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim"></div>
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pl-2">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-on-surface mb-2 flex items-center gap-2">
+<span class="text-sm font-label-caps bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant">E1</span>
+                                    Process-focus
+                                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Following procedures, creating checklists, flagging deviations</p>
+</div>
+<!-- GAINS Scale -->
+<div class="flex items-center gap-2 bg-surface-container-low p-2 rounded-lg border border-surface-container-high shrink-0">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e1_gains" type="radio" value="G"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">G</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e1_gains" type="radio" value="A"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">A</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e1_gains" type="radio" value="I"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">I</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e1_gains" type="radio" value="N"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">N</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e1_gains" type="radio" value="S"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">S</div>
+</label>
+</div>
+</div>
+</div>
+<!-- E2: Planning -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high transition-all hover:shadow-[0_8px_30px_rgba(26,32,44,0.06)] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim"></div>
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pl-2">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-on-surface mb-2 flex items-center gap-2">
+<span class="text-sm font-label-caps bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant">E2</span>
+                                    Planning
+                                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Calendar management, timely escalations, posting works-in-progress early</p>
+</div>
+<!-- GAINS Scale -->
+<div class="flex items-center gap-2 bg-surface-container-low p-2 rounded-lg border border-surface-container-high shrink-0">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e2_gains" type="radio" value="G"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">G</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e2_gains" type="radio" value="A"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">A</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e2_gains" type="radio" value="I"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">I</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e2_gains" type="radio" value="N"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">N</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e2_gains" type="radio" value="S"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">S</div>
+</label>
+</div>
+</div>
+</div>
+<!-- E3: Outcomes -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high transition-all hover:shadow-[0_8px_30px_rgba(26,32,44,0.06)] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim"></div>
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pl-2">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-on-surface mb-2 flex items-center gap-2">
+<span class="text-sm font-label-caps bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant">E3</span>
+                                    Outcomes
+                                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tracking metrics, delivering consistent quality results, catalyzing growth</p>
+</div>
+<!-- GAINS Scale -->
+<div class="flex items-center gap-2 bg-surface-container-low p-2 rounded-lg border border-surface-container-high shrink-0">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e3_gains" type="radio" value="G"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">G</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e3_gains" type="radio" value="A"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">A</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e3_gains" type="radio" value="I"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">I</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e3_gains" type="radio" value="N"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">N</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e3_gains" type="radio" value="S"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">S</div>
+</label>
+</div>
+</div>
+</div>
+<!-- E4: Resourcefulness -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high transition-all hover:shadow-[0_8px_30px_rgba(26,32,44,0.06)] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed-dim"></div>
+<div class="flex flex-col sm:flex-row sm:items-start justify-between gap-6 pl-2">
+<div class="flex-1">
+<h3 class="font-h3 text-h3 text-on-surface mb-2 flex items-center gap-2">
+<span class="text-sm font-label-caps bg-surface-container-highest px-2 py-1 rounded text-on-surface-variant">E4</span>
+                                    Resourcefulness
+                                </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Efficient use of time/funds, adapting to change, time-saving measures</p>
+</div>
+<!-- GAINS Scale -->
+<div class="flex items-center gap-2 bg-surface-container-low p-2 rounded-lg border border-surface-container-high shrink-0">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e4_gains" type="radio" value="G"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">G</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e4_gains" type="radio" value="A"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">A</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e4_gains" type="radio" value="I"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">I</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e4_gains" type="radio" value="N"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">N</div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="e4_gains" type="radio" value="S"/>
+<div class="w-10 h-10 rounded-full flex items-center justify-center font-label-caps text-label-caps text-on-surface-variant bg-surface-container-lowest border border-outline-variant hover:bg-surface-variant transition-colors peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-checked:shadow-md">S</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Observations & AI Refinement -->
+<div class="mt-4 bg-surface-container-lowest rounded-xl p-5 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-h3 text-h3 text-on-surface">Raw Observations</h3>
+<button class="bg-primary-container text-on-primary-container font-body-md text-sm font-semibold py-2 px-4 rounded-full flex items-center gap-2 hover:bg-primary-fixed transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                            Refine with AI
+                        </button>
+</div>
+<textarea class="w-full h-32 bg-background border border-outline-variant rounded-lg p-4 font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-primary resize-none placeholder:text-outline" placeholder="Enter notes, behavioral examples, or instances where the teammate demonstrated strong execution..."></textarea>
+</div>
+</div>
+<!-- Right Column: Teammate History Sidebar -->
+<div class="lg:col-span-4 hidden lg:flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container-high overflow-hidden sticky top-24">
+<div class="bg-surface-container-high px-5 py-4 border-b border-surface-container-highest">
+<h3 class="font-h3 text-h3 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">history</span>
+                            Teammate History
+                        </h3>
+</div>
+<div class="p-5 flex flex-col gap-5">
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-3">Previous Effectiveness Ratings</h4>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface font-medium">Q3 2023 Cycle</span>
+<span class="bg-primary-container/20 text-on-primary-container px-2 py-1 rounded font-bold">A (Acceptable)</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface font-medium">Q1 2023 Cycle</span>
+<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded font-bold">I (Inconsistent)</span>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-3">Notes from last cycle</h4>
+<div class="bg-surface-container-low p-4 rounded-lg border border-surface-container-highest">
+<p class="text-sm font-body-md text-on-surface-variant italic mb-2">"Struggled slightly with proactive escalation on the Delta project, but showed massive improvement in checklist adherence by the end of the quarter."</p>
+<span class="text-xs text-outline font-semibold">- Evaluator: Sarah Jenkins</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Wizard Bottom Action Bar (in canvas) -->
+<div class="mt-auto max-w-container-max mx-auto w-full px-4 md:px-8 pb-4">
+<div class="bg-surface-container-lowest/90 backdrop-blur-md p-4 flex justify-between items-center rounded-xl border border-surface-container-high shadow-lg">
+<button class="font-body-md text-on-surface-variant px-6 py-2.5 rounded-full border border-outline-variant hover:bg-surface-variant transition-colors font-medium">
+                    Back
+                </button>
+<button class="bg-primary text-on-primary font-body-md font-medium px-8 py-2.5 rounded-full hover:bg-on-primary-fixed-variant transition-colors shadow-sm flex items-center gap-2">
+                    Next Step
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="bg-[#FDFCF0]/90 dark:bg-slate-900/90 backdrop-blur-md text-[#1A202C] dark:text-white font-manrope text-[10px] font-bold uppercase tracking-wider border-t border-stone-200/50 dark:border-slate-800 shadow-[0_-4px_20px_rgba(26,32,44,0.04)] md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe pt-2 h-16 rounded-t-2xl active:bg-stone-200 dark:active:bg-slate-800 Active: scale-90 transition-transform duration-150">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#8DAA91] bg-[#8DAA91]/10 rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">add_circle</span>
+<span>Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">analytics</span>
+<span>Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl mb-1">account_circle</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

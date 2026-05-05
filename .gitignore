@@ -1,0 +1,15 @@
+# Secrets & credentials (never commit)
+*-firebase-adminsdk-*.json
+*-firebase-adminsdk-*.oneline.txt
+*firebase-adminsdk*
+echo-vibe-*-firebase-adminsdk-*
+service-account*.json
+*.pem
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Evaluation Report - Project ECHO</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#e7eeff",
+                        "on-primary-container": "#253f2b",
+                        "surface-container-highest": "#d8e3fa",
+                        "on-primary-fixed-variant": "#334d38",
+                        "secondary-container": "#d2e4fb",
+                        "on-secondary-fixed-variant": "#38485a",
+                        "on-secondary-container": "#556679",
+                        "on-error-container": "#93000a",
+                        "secondary": "#4f6073",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "primary": "#4a654f",
+                        "tertiary-fixed": "#e4e2dd",
+                        "on-tertiary-container": "#393936",
+                        "on-background": "#111c2c",
+                        "surface-dim": "#cfdaf1",
+                        "outline": "#737972",
+                        "tertiary": "#5e5e5b",
+                        "on-primary-fixed": "#062010",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#4a654f",
+                        "primary-fixed": "#cceacf",
+                        "primary-container": "#8daa91",
+                        "surface-container-high": "#dee8ff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#263142",
+                        "inverse-on-surface": "#ebf1ff",
+                        "surface-variant": "#d8e3fa",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#424842",
+                        "secondary-fixed-dim": "#b7c8de",
+                        "secondary-fixed": "#d2e4fb",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#111c2c",
+                        "tertiary-container": "#a4a39f",
+                        "background": "#f9f9ff",
+                        "primary-fixed-dim": "#b0ceb4",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "outline-variant": "#c2c8c0",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "inverse-primary": "#b0ceb4",
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#0b1d2d"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "xl": "3rem",
+                        "lg": "2rem",
+                        "md": "1.5rem",
+                        "gutter": "24px",
+                        "sm": "1rem",
+                        "xs": "0.5rem",
+                        "container-max": "1200px",
+                        "base": "4px"
+                    },
+                    fontFamily: {
+                        "timer-display": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    fontSize: {
+                        "timer-display": ["24px", { lineHeight: "1", letterSpacing: "-0.02em", fontWeight: "500" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "h2": ["28px", { lineHeight: "1.3", fontWeight: "600" }],
+                        "h1": ["36px", { lineHeight: "1.2", fontWeight: "700" }],
+                        "h3": ["22px", { lineHeight: "1.4", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-[#FDFCF0] text-[#1A202C] font-manrope font-semibold tracking-tight border-b border-stone-200 shadow-sm fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-8 h-16">
+<div class="flex items-center gap-4">
+<span class="text-lg font-black text-[#1A202C]">Project ECHO</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-[#1A202C] font-timer-display text-timer-display">60:00</span>
+<div class="flex gap-4">
+<button class="hover:bg-stone-100 p-2 rounded-full transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-stone-100 p-2 rounded-full transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-stone-200 object-cover" data-alt="A close-up portrait of a female professional in a modern office environment. She has warm, approachable features and is styled in smart-casual business attire. The lighting is soft and natural, contributing to a clean, bright, corporate aesthetic. The background is slightly blurred to maintain focus on the subject." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-VODuzag0ZauqzTnMOtw-fQm4InF9MnYhGmc04co3fAIbwFZuqpzTOEU5MjQmqd2yza3xWWyw523EUt3p6g8ggL3-Fq8M_mPmThb_knmyKA_Qiimb5zm0vcKOE6-29ZLcWhVhCFm9KBTVqEyozio4uH9Mlk7xBdHHHIcE1CWLI8WuuwNFCFnraPd54fKlSIODXQj02BF52NIK3YBlFvbkqP3iPhb8CC308UT_VngZXxxkCM0giAGkCBr5hbPkED_uw3MU7kVl4Y0"/>
+</div>
+</header>
+<div class="flex h-screen pt-16">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col pt-6 bg-[#1A202C] text-white font-manrope text-sm font-medium border-r border-slate-800 shadow-xl fixed left-0 top-0 h-full w-[240px] z-40 mt-16">
+<div class="px-6 mb-8">
+<h2 class="text-xl font-bold text-[#8DAA91]">MedGrocer ECHO</h2>
+<p class="text-slate-400 text-xs mt-1">Capability Evaluation</p>
+</div>
+<ul class="flex flex-col gap-2">
+<li>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+                    </a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span> Create
+                    </a>
+</li>
+<li>
+<a class="text-slate-400 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span> Stats
+                    </a>
+</li>
+<li>
+<a class="bg-[#8DAA91]/20 text-[#8DAA91] border-r-4 border-[#8DAA91] px-4 py-3 flex items-center gap-3 hover:bg-slate-800 transition-all duration-200 cursor-pointer active:opacity-80" href="#">
+<span class="material-symbols-outlined" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span> Profile
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-[240px] p-6 lg:p-8 overflow-y-auto w-full max-w-container-max mx-auto pb-32 md:pb-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div class="flex items-center gap-6">
+<img alt="Sarah Jenkins" class="w-20 h-20 rounded-full shadow-sm object-cover border-4 border-surface-container-lowest" data-alt="A professional headshot of Sarah Jenkins, a Senior Clinical Specialist. She looks confident yet approachable, set against a softly lit, warm neutral background. The aesthetic reflects modern corporate professionalism with clean lines and soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8Y9aZ4nwPYea137TW7NuFnBU0zK16frr27LgpiVU598sIJOUGXKdJLOTwFowy1aCVMbDDgswtjc40spejBKz60Gte_sW1vaY6oQ2MnoOh0X3HCUlq3PuSrVwh4YhOWzytBu4oqpZzmSbYNUCtY785_0xGfbvvYZhmLLJDP6aOCC9Fypz64NWWuqPi0WqLvdwxy-GgVdB4CPpj0NZ4A97ADpSV95y4xXD40EGJeW3nUZN2_eHlALU2opr2yCCNEaVxTEIXB4mHfUQ"/>
+<div>
+<h1 class="font-h1 text-h1 text-on-surface">Sarah Jenkins</h1>
+<p class="font-body-lg text-body-lg text-secondary">Senior Clinical Specialist</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-primary-container/20 text-on-primary-container px-4 py-2 rounded-full font-label-caps text-label-caps flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span> Overall Rating: Ahead
+                    </div>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest text-on-surface px-4 py-2 rounded-full font-label-caps text-label-caps hover:bg-secondary-container transition-colors">Edit</button>
+<button class="bg-error-container text-on-error-container px-4 py-2 rounded-full font-label-caps text-label-caps hover:bg-error hover:text-on-error transition-colors">Delete</button>
+</div>
+</div>
+</div>
+<!-- ACE Breakdown -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Aptitude (Head) -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined text-[28px]" data-icon="psychology">psychology</span>
+<h3 class="font-h3 text-h3 text-on-surface">Aptitude</h3>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4">Technical expertise and analytical problem solving.</p>
+<div class="bg-primary-container/20 text-on-primary-container px-3 py-1 rounded-full font-label-caps text-label-caps inline-block">Inspires (I)</div>
+</div>
+<!-- Character (Heart) -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined text-[28px]" data-icon="favorite">favorite</span>
+<h3 class="font-h3 text-h3 text-on-surface">Character</h3>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4">Cultural alignment and collaborative mindset.</p>
+<div class="bg-primary-container/20 text-on-primary-container px-3 py-1 rounded-full font-label-caps text-label-caps inline-block">Ahead (A)</div>
+</div>
+<!-- Effectiveness (Hands) -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined text-[28px]" data-icon="handshake">handshake</span>
+<h3 class="font-h3 text-h3 text-on-surface">Effectiveness</h3>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4">Execution, output quality, and reliability.</p>
+<div class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-label-caps inline-block">Norm (N)</div>
+</div>
+</div>
+<!-- The Dialogue Component -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_20px_rgba(26,32,44,0.04)] border border-surface-container overflow-hidden flex flex-col h-[600px]">
+<div class="p-4 border-b border-surface-container bg-surface-container-low flex justify-between items-center">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="forum">forum</span> Coaching Dialogue
+                        </h2>
+<p class="font-label-caps text-label-caps text-secondary mt-1">Strictly restricted to Evaluator, Evaluatee, and HR Admin</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-8 bg-background relative">
+<!-- Thread 1 -->
+<div class="relative pl-4">
+<!-- Thread line -->
+<div class="absolute left-[34px] top-10 bottom-[-20px] w-[2px] bg-surface-container-highest rounded"></div>
+<div class="flex gap-4 relative z-10">
+<img alt="Dr. Marcus Vance" class="w-10 h-10 rounded-full border-2 border-surface-container-lowest shadow-sm object-cover" data-alt="A portrait of Dr. Marcus Vance, a professional male evaluator. He has a thoughtful expression, wearing a smart suit against a clean, softly lit office background. The style is bright and corporate." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKI5tRJcVwO5cExYXaEbXRSUDvk6p2Pe6JjCajLLuFl_jRGG8TZ2qg7xNlOHFAX2HMWpU4rgp3OWcJBZQcHexQKtHJjSyom0sueItTex-0PE0MeSlPS9f_yBwY_WzQzN-bFp23e2nUD3zBym0Jheoei1G_LgS7QqLQsBdHmPpOxOW3zXE4xAMZ_Dzltu4h-hj2mtPTYb9R6ArZR11Sj0ZUni3uXPwzG5DWlI77aR-U6GSkBCbM12F10VlUXVkQq6c3pAsVART2MEU"/>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-body-md font-semibold text-on-surface">Dr. Marcus Vance</span>
+<span class="font-label-caps text-label-caps text-secondary bg-surface-container px-2 py-0.5 rounded">Evaluator</span>
+<span class="font-label-caps text-label-caps text-outline ml-auto">10:45 AM</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl rounded-tl-none border border-surface-container">
+<p class="font-body-md text-body-md text-on-surface">Sarah, your recent work on the new protocol implementation has been highly precise. Regarding <strong>Effectiveness</strong>, I'd like to see a bit more proactive communication when minor delays occur.</p>
+</div>
+</div>
+</div>
+<!-- Reply -->
+<div class="flex gap-4 relative z-10 mt-6 pl-12">
+<img alt="Sarah Jenkins" class="w-8 h-8 rounded-full border-2 border-surface-container-lowest shadow-sm object-cover mt-1" data-alt="A portrait of Sarah Jenkins, looking engaged and attentive. Soft corporate lighting with a warm cream background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Q9XUHg4UIGprDjAQS67vzVOIULPuo1jcczkK-8knfp5lofzN7cTblJWFDWcRcuDWa0GW23CwSIceggpSz-v-TvDmeeHa06er3aoHRQ1nDGJD-6nZXWC94FqN9hMIY1v1Iiwy_jg10i3QNVvUPfH_qYQ1N5xTH9m1PN_9gBswyCghs4wMExu2ZWOX5cY2NGJps4GYYc9ICY4IRnhuEUfGDBtYw6Eve1nNjaM_fAeoBgieVTecPTIyd3gy49d8ulamP03mUvoVVmM"/>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-body-md font-semibold text-on-surface">Sarah Jenkins</span>
+<span class="font-label-caps text-label-caps text-secondary bg-surface-container px-2 py-0.5 rounded">Evaluatee</span>
+<span class="font-label-caps text-label-caps text-outline ml-auto">11:15 AM</span>
+</div>
+<div class="bg-primary-container/10 p-4 rounded-xl rounded-tl-none border border-primary-container/30">
+<div class="flex items-center gap-1 text-[10px] text-primary uppercase font-bold tracking-wide mb-2 bg-primary/10 inline-block px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]" data-icon="history">history</span> Replied to v1.0
+                                    </div>
+<p class="font-body-md text-body-md text-on-surface">Understood, Dr. Vance. I will ensure the daily syncs include a brief status on potential blockers moving forward.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Thread 2 (Anonymous) -->
+<div class="relative pl-4">
+<div class="flex gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border-2 border-surface-container-lowest shadow-sm text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="person_outline">person_outline</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-body-md font-semibold text-on-surface">Peer Evaluator</span>
+<span class="font-label-caps text-label-caps text-secondary bg-surface-container px-2 py-0.5 rounded">Anonymous Peer</span>
+<span class="font-label-caps text-label-caps text-outline ml-auto">Yesterday, 4:30 PM</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl rounded-tl-none border border-surface-container">
+<p class="font-body-md text-body-md text-on-surface">Sarah is fantastic to collaborate with (Character). Always willing to step in and clarify complex issues for the newer team members.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-surface-container-lowest border-t border-surface-container relative z-20">
+<div class="flex items-end gap-4">
+<div class="flex-1 bg-surface rounded-xl border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all p-2 flex">
+<textarea aria-label="Chat input" class="w-full bg-transparent border-none focus:ring-0 resize-none h-[60px] font-body-md text-body-md text-on-surface placeholder:text-outline" placeholder="Add to the coaching dialogue..."></textarea>
+<button class="self-end text-outline hover:text-primary p-2">
+<span class="material-symbols-outlined" data-icon="attach_file">attach_file</span>
+</button>
+</div>
+<div class="flex flex-col items-center gap-2">
+<button class="bg-primary hover:bg-surface-tint text-on-primary px-6 py-3 rounded-full font-label-caps text-label-caps shadow-sm transition-colors flex items-center gap-2 h-[48px]">
+<span class="material-symbols-outlined text-[18px]" data-icon="send">send</span> Post Reply
+                            </button>
+</div>
+</div>
+<div class="flex justify-end mt-2 pr-4">
+<p class="font-label-caps text-[10px] text-secondary flex items-center gap-1 opacity-80">
+<span class="material-symbols-outlined text-[12px]" data-icon="notifications_active">notifications_active</span> Replies trigger Slack &amp; Email alerts
+                        </p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe pt-2 h-16 bg-[#FDFCF0]/90 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-4px_20px_rgba(26,32,44,0.04)] rounded-t-2xl font-manrope text-[10px] font-bold uppercase tracking-wider text-[#1A202C]">
+<button class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="home">home</span> Home
+        </button>
+<button class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="add_circle">add_circle</span> Create
+        </button>
+<button class="flex flex-col items-center justify-center text-slate-500 active:bg-stone-200 p-2 rounded-xl transition-transform duration-150 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="analytics">analytics</span> Stats
+        </button>
+<button class="flex flex-col items-center justify-center text-[#8DAA91] bg-[#8DAA91]/10 px-3 py-1 rounded-xl transition-transform duration-150 active:scale-90 w-16">
+<span class="material-symbols-outlined mb-1 text-[24px]" data-icon="account_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_circle</span> Profile
+        </button>
+</nav>
+</body></html>
