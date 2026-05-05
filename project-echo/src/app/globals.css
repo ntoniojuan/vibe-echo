@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  /* Sage workspace + dark sidebar (dashboard shell); marketing may keep --color-background */
+  --color-echo-workspace: #e4ebe4;
+  --color-echo-card: #f6f8f5;
+  --color-echo-sidebar: #1e293b;
+  --color-echo-sidebar-muted: #94a3b8;
+  --color-echo-sidebar-fg: #f8fafc;
+  --color-echo-sidebar-active: #8daa91;
+  --color-background: #f9f9ff;
+  --color-foreground: #111c2c;
+  --color-primary: #4a654f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #8daa91;
+  --color-on-primary-container: #253f2b;
+  --color-secondary: #4f6073;
+  --color-on-secondary: #ffffff;
+  --color-inverse-surface: #263142;
+  --color-inverse-on-surface: #ebf1ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f3ff;
+  --color-surface-container-high: #dee8ff;
+  --color-surface-variant: #d8e3fa;
+  --color-outline: #737972;
+  --color-outline-variant: #c2c8c0;
+  --color-on-surface: #111c2c;
+  --color-on-surface-variant: #424842;
+  --color-on-background: #111c2c;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --shadow-echo-card: 0 4px 20px rgba(17, 28, 44, 0.04);
+  --shadow-echo-nav: 0 -4px 20px rgba(26, 32, 44, 0.04);
+  /* Recharts / Growth analytics */
+  --color-chart-grid: #c2c8c0;
+  --color-chart-line: #263142;
+  --color-chart-line-dot-fill: #ffffff;
+  --color-chart-line-dot-stroke: #263142;
+}
+
+:root {
+  color-scheme: light;
+  --echo-transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  --echo-heatmap-great-bg: rgb(46 125 50 / 0.15);
+  --echo-heatmap-great-border: rgb(46 125 50 / 0.4);
+  --echo-heatmap-great-accent: #2e7d32;
+  --echo-heatmap-great-swatch: rgb(46 125 50 / 0.8);
+  --echo-heatmap-ahead-bg: rgb(76 175 80 / 0.2);
+  --echo-heatmap-ahead-border: rgb(76 175 80 / 0.3);
+  --echo-heatmap-ahead-accent: #4caf50;
+  --echo-heatmap-ahead-swatch: rgb(76 175 80 / 0.8);
+  --echo-heatmap-inline-bg: rgb(129 199 132 / 0.2);
+  --echo-heatmap-inline-border: rgb(129 199 132 / 0.3);
+  --echo-heatmap-inline-swatch: rgb(129 199 132 / 0.8);
+  --echo-heatmap-needs-bg: rgb(255 152 0 / 0.2);
+  --echo-heatmap-needs-border: rgb(255 152 0 / 0.3);
+  --echo-heatmap-needs-accent: #ff9800;
+  --echo-heatmap-needs-swatch: rgb(255 152 0 / 0.8);
+  --echo-heatmap-severe-bg: rgb(230 81 0 / 0.15);
+  --echo-heatmap-severe-border: rgb(230 81 0 / 0.35);
+  --echo-heatmap-severe-accent: #e65100;
+  --echo-heatmap-severe-swatch: rgb(230 81 0 / 0.8);
+}
+
+.dark {
+  color-scheme: dark;
+  /* Deep navy shell; cards/surfaces one step lighter (charcoal → blue-gray) */
+  --color-echo-workspace: #0c1222;
+  --color-echo-card: #1e293b;
+  --color-echo-sidebar: #070b14;
+  --color-echo-sidebar-muted: #94a3b8;
+  --color-echo-sidebar-fg: #faf8f5;
+  --color-echo-sidebar-active: #a3c9a8;
+  --color-background: #0c1222;
+  --color-foreground: #faf8f5;
+  --color-primary: #7a9d7f;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #9dc6a2;
+  --color-on-primary-container: #0c1222;
+  --color-secondary: #94a3b8;
+  --color-on-secondary: #0c1222;
+  --color-inverse-surface: #e2e8f0;
+  --color-inverse-on-surface: #0c1222;
+  --color-surface-container-lowest: #172033;
+  --color-surface-container-low: #243047;
+  --color-surface-container-high: #334155;
+  --color-surface-variant: #334155;
+  --color-outline: #94a3b8;
+  --color-outline-variant: #64748b;
+  --color-on-surface: #faf8f5;
+  --color-on-surface-variant: #b8c5d4;
+  --color-on-background: #faf8f5;
+  --color-error-container: #7f1d1d;
+  --color-on-error-container: #fecaca;
+  --shadow-echo-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-echo-nav: 0 -4px 24px rgba(0, 0, 0, 0.4);
+  --color-chart-grid: rgb(226 232 240 / 0.35);
+  --color-chart-line: #b8d4ba;
+  --color-chart-line-dot-fill: #1e293b;
+  --color-chart-line-dot-stroke: #b8d4ba;
+  --echo-heatmap-great-bg: rgb(129 199 132 / 0.18);
+  --echo-heatmap-great-border: rgb(165 214 167 / 0.45);
+  --echo-heatmap-great-accent: #a5d6a7;
+  --echo-heatmap-great-swatch: rgb(129 199 132 / 0.85);
+  --echo-heatmap-ahead-bg: rgb(102 187 106 / 0.22);
+  --echo-heatmap-ahead-border: rgb(129 199 132 / 0.4);
+  --echo-heatmap-ahead-accent: #81c784;
+  --echo-heatmap-ahead-swatch: rgb(102 187 106 / 0.85);
+  --echo-heatmap-inline-bg: rgb(129 199 132 / 0.14);
+  --echo-heatmap-inline-border: rgb(165 214 167 / 0.35);
+  --echo-heatmap-inline-swatch: rgb(165 214 167 / 0.55);
+  --echo-heatmap-needs-bg: rgb(255 183 77 / 0.2);
+  --echo-heatmap-needs-border: rgb(255 183 77 / 0.4);
+  --echo-heatmap-needs-accent: #ffcc80;
+  --echo-heatmap-needs-swatch: rgb(255 183 77 / 0.8);
+  --echo-heatmap-severe-bg: rgb(255 158 108 / 0.2);
+  --echo-heatmap-severe-border: rgb(255 158 108 / 0.42);
+  --echo-heatmap-severe-accent: #ffab7a;
+  --echo-heatmap-severe-swatch: rgb(255 158 108 / 0.82);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --echo-transition-theme: none;
+  }
+
+  .echo-theme-transition {
+    transition: none;
+  }
+}
+
+.echo-theme-transition {
+  transition: var(--echo-transition-theme);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  transition: var(--echo-transition-theme);
+}
+
+@layer base {
+  .dark :where(textarea, select) {
+    background-color: var(--color-surface-container-low);
+    color: var(--color-on-surface);
+    border-color: var(--color-outline-variant);
+    caret-color: var(--color-on-surface);
+  }
+
+  .dark
+    :where(input):not([type="button"]):not([type="submit"]):not([type="reset"]):not(
+      [type="checkbox"]
+    ):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not(
+      [type="image"]
+    ) {
+    background-color: var(--color-surface-container-low);
+    color: var(--color-on-surface);
+    border-color: var(--color-outline-variant);
+    caret-color: var(--color-on-surface);
+  }
+
+  .dark :where(textarea, select)::placeholder,
+  .dark
+    :where(input):not([type="button"]):not([type="submit"]):not([type="reset"]):not(
+      [type="checkbox"]
+    ):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not(
+      [type="image"]
+    )::placeholder {
+    color: color-mix(in srgb, var(--color-on-surface-variant) 92%, transparent);
+    opacity: 1;
+  }
+}
+
+/* Refinement MCQ loader: staggered sage ripples (semantic primary token) */
+@keyframes echo-refinement-loader-ripple {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.15);
+    opacity: 0;
+  }
+}
+
+.echo-refinement-loader-ripple {
+  position: relative;
+  display: flex;
+  width: 7rem;
+  height: 7rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.echo-refinement-loader-ripple__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+  animation: echo-refinement-loader-ripple 2.4s ease-out infinite;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.echo-refinement-loader-ripple__ring--stagger {
+  animation-delay: 1.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .echo-refinement-loader-ripple__ring {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(1);
+  }
+}

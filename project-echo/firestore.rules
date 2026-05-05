@@ -1,0 +1,74 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null && request.auth.token.email != null;
+    }
+
+    function userEmailLower() {
+      return request.auth.token.email.lower();
+    }
+
+    function canAccessEchoEvaluationData(data) {
+      return signedIn()
+        && data.evaluatorEmail is string
+        && data.evaluateeEmail is string
+        && (
+          data.evaluatorEmail.lower() == userEmailLower()
+          || data.evaluateeEmail.lower() == userEmailLower()
+        );
+    }
+
+    function parentEvaluationData(evalId) {
+      return get(/databases/$(database)/documents/echoEvaluationDrafts/$(evalId)).data;
+    }
+
+    function evaluatorOwnsResource() {
+      return resource.data.evaluatorEmail.lower() == userEmailLower();
+    }
+
+    function evaluateeMarksSubmittedReadOnly() {
+      return signedIn()
+        && resource.data.status == 'submitted'
+        && resource.data.evaluateeEmail.lower() == userEmailLower()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead'])
+        && request.resource.data.isRead == true;
+    }
+
+    function evaluatorUpdatesAccessibleDraftOrSubmission() {
+      return signedIn()
+        && evaluatorOwnsResource()
+        && canAccessEchoEvaluationData(resource.data)
+        && canAccessEchoEvaluationData(request.resource.data);
+    }
+
+    match /echoEvaluationDrafts/{evaluationId} {
+      allow read: if canAccessEchoEvaluationData(resource.data);
+      allow create: if canAccessEchoEvaluationData(request.resource.data);
+      allow update: if evaluateeMarksSubmittedReadOnly()
+        || evaluatorUpdatesAccessibleDraftOrSubmission();
+      allow delete: if canAccessEchoEvaluationData(resource.data);
+
+      match /threadMessages/{messageId} {
+        allow read: if canAccessEchoEvaluationData(parentEvaluationData(evaluationId));
+        allow create: if canAccessEchoEvaluationData(parentEvaluationData(evaluationId))
+          && request.resource.data.keys().hasAll(['authorUid', 'text', 'createdAt'])
+          && request.resource.data.authorUid == request.auth.uid
+          && request.resource.data.text is string
+          && request.resource.data.text.size() > 0
+          && request.resource.data.text.size() < 8000
+          && (
+            !('authorDisplayName' in request.resource.data)
+            || request.resource.data.authorDisplayName is string
+          );
+        allow update, delete: if false;
+      }
+    }
+
+    match /system_logs/{logId} {
+      allow read, write: if false;
+    }
+  }
+}
