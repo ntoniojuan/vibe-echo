@@ -8,7 +8,7 @@ type MarkReadPayload = {
 };
 
 export const markEchoEvaluationSubmittedReadAudited = onCall(
-  { region: "us-central1" },
+  { region: "us-central1", cors: true },
   async (request: CallableRequest<MarkReadPayload>) => {
     if (!request.auth?.uid || !request.auth.token.email) {
       throw new HttpsError("unauthenticated", "Sign in required.");

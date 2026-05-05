@@ -38,6 +38,11 @@ firebase deploy --only firestore:rules,firestore:indexes,functions
 - Cloud Functions service account must have permission to write to Firestore (`system_logs`). The default App Engine / Functions service account usually has this for the same project.
 - **Actor UID**: Evaluator saves and evaluatee “mark read” run through **callable** functions (`updateEchoEvaluationDraftAudited`, `markEchoEvaluationSubmittedReadAudited`) so `system_logs` entries include the real Firebase Auth UID (`actorUid`). Refinement writes from the Next.js API route log with `actorUid: null` and `actorSource: echo_refinement_apply_route`. Hard deletes still use the `auditEchoEvaluationDraftDeleted` trigger (`actorUid: null`, `firestore_trigger_v2_delete`).
 
+## Vercel / custom web origins
+
+- **Firebase Auth**: In [Firebase Console](https://console.firebase.google.com) → **Authentication** → **Settings** → **Authorized domains**, add your production host (e.g. `vibe-echo.vercel.app`). Preview deployments need their own `*.vercel.app` host added if you test there.
+- **Callable CORS**: Gen-2 **`onCall`** functions in this repo set **`cors: true`** so browsers on non-Firebase Hosting origins (e.g. Vercel) receive correct CORS headers on preflight. Redeploy functions after changing this.
+
 ## Environment
 
 - Optionally set `GCLOUD_PROJECT` or rely on Firebase `initializeApp()` default credentials in production.

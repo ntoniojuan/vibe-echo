@@ -12,7 +12,6 @@ import { readEchoAceStepKeyFromWizardStepIndex } from "@/lib/echo/readEchoAceSte
 import { readEchoAreAceStepGainsComplete } from "@/lib/echo/readEchoAreAceStepGainsComplete";
 import { readEchoAreAllGainsRatingsComplete } from "@/lib/echo/readEchoAreAllGainsRatingsComplete";
 import { readEchoIsEvaluateeGeneralInfoComplete } from "@/lib/echo/readEchoIsEvaluateeGeneralInfoComplete";
-import { useEchoAuth } from "@/hooks/useEchoAuth";
 import { useToast } from "@/hooks/useToast";
 
 const lastStepIndex = 4;
@@ -20,7 +19,6 @@ const remoteDraftLoadTimeoutMs = 20_000;
 
 export const useEchoWizard = () => {
   const { showToast } = useToast();
-  const { user } = useEchoAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const draftFromQuery = searchParams.get("draft")?.trim() ?? "";
@@ -114,20 +112,16 @@ export const useEchoWizard = () => {
       if (!draftId) {
         return;
       }
-      const evaluatorEmail = user?.email?.trim() ?? "";
-      const evaluatorUid = user?.uid?.trim() ?? "";
       await updateEchoEvaluationDraft({
         evaluationDraftId: draftId,
         currentStepIndex: nextStepIndex,
         status: "draft",
         shouldSetCreatedAt: shouldSetCreatedAtRef.current,
-        evaluatorEmail,
-        evaluatorUid,
         ...snapshot,
       });
       shouldSetCreatedAtRef.current = false;
     },
-    [draftId, user?.email, user?.uid],
+    [draftId],
   );
 
   const goToStep = useCallback((nextStepIndex: number) => {
@@ -202,15 +196,11 @@ export const useEchoWizard = () => {
     }
     setIsSaving(true);
     try {
-      const evaluatorEmail = user?.email?.trim() ?? "";
-      const evaluatorUid = user?.uid?.trim() ?? "";
       await updateEchoEvaluationDraft({
         evaluationDraftId: draftId,
         currentStepIndex: lastStepIndex,
         status: "submitted",
         shouldSetCreatedAt: false,
-        evaluatorEmail,
-        evaluatorUid,
         ...formState,
       });
       const nextDraftId = crypto.randomUUID();
@@ -231,8 +221,6 @@ export const useEchoWizard = () => {
     showToast,
     summaryAccuracyAcknowledged,
     router,
-    user?.email,
-    user?.uid,
   ]);
 
   return {

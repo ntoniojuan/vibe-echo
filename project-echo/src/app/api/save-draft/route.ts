@@ -1,46 +1,54 @@
-import { FieldValue, getFirestore } from "firebase-admin/firestore";
-import { HttpsError, onCall, type CallableRequest } from "firebase-functions/v2/https";
+import { FieldValue } from "firebase-admin/firestore";
+import { NextResponse } from "next/server";
+import { readBearerIdTokenFromRequest } from "@/lib/api/readBearerIdTokenFromRequest";
+import { saveDraftRequestSchema } from "@/lib/api/saveDraftRequestSchema";
+import { readFirebaseAdminAuth } from "@/lib/firebase/readFirebaseAdminAuth";
+import { readFirebaseAdminFirestore } from "@/lib/firebase/readFirebaseAdminFirestore";
+import { echoEvaluationDraftCollectionId } from "@/lib/firebase/echoEvaluationDraftCollectionId";
 
-const echoEvaluationDraftCollectionId = "echoEvaluationDrafts";
+export const runtime = "nodejs";
 
-type UpdateEchoEvaluationDraftAuditedPayload = {
-  evaluationDraftId: string;
-  currentStepIndex: number;
-  status: "draft" | "submitted";
-  shouldSetCreatedAt: boolean;
-  evaluateeName: string;
-  evaluateeEmail: string;
-  isAnonymous: boolean;
-  relationshipType: string;
-  evaluationReason: string;
-  aptitudeObservations: string;
-  characterObservations: string;
-  effectivenessObservations: string;
-  gainsRatings: Record<string, number>;
-};
+export const POST = async (request: Request) => {
+  const idToken = readBearerIdTokenFromRequest(request);
+  if (!idToken) {
+    return NextResponse.json({ error: "Missing or invalid Authorization header." }, { status: 401 });
+  }
 
-export const updateEchoEvaluationDraftAudited = onCall(
-  { region: "us-central1", cors: true },
-  async (request: CallableRequest<UpdateEchoEvaluationDraftAuditedPayload>) => {
-    if (!request.auth?.uid || !request.auth.token.email) {
-      throw new HttpsError("unauthenticated", "Sign in required.");
+  let authUid: string;
+  let authEmail: string;
+  try {
+    const adminAuth = readFirebaseAdminAuth();
+    const decoded = await adminAuth.verifyIdToken(idToken);
+    const email = typeof decoded.email === "string" ? decoded.email.trim().toLowerCase() : "";
+    if (!decoded.uid || email.length === 0) {
+      return NextResponse.json({ error: "Sign-in must include an email." }, { status: 401 });
     }
-    const data = request.data;
-    if (
-      !data ||
-      typeof data.evaluationDraftId !== "string" ||
-      data.evaluationDraftId.trim().length === 0
-    ) {
-      throw new HttpsError("invalid-argument", "evaluationDraftId is required.");
-    }
-    if (data.status !== "draft" && data.status !== "submitted") {
-      throw new HttpsError("invalid-argument", "status must be draft or submitted.");
-    }
+    authUid = decoded.uid.trim();
+    authEmail = email;
+  } catch (error) {
+    console.error("ECHO save-draft: ID token verification failed.", error);
+    return NextResponse.json({ error: "Invalid or expired session." }, { status: 401 });
+  }
 
-    const authEmail = String(request.auth.token.email).trim().toLowerCase();
-    const authUid = request.auth.uid.trim();
+  let jsonBody: unknown;
+  try {
+    jsonBody = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+  }
 
-    const database = getFirestore();
+  const parsed = saveDraftRequestSchema.safeParse(jsonBody);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: "Validation failed.", details: parsed.error.flatten() },
+      { status: 400 },
+    );
+  }
+
+  const data = parsed.data;
+
+  try {
+    const database = readFirebaseAdminFirestore();
     const documentReference = database
       .collection(echoEvaluationDraftCollectionId)
       .doc(data.evaluationDraftId.trim());
@@ -51,7 +59,10 @@ export const updateEchoEvaluationDraftAudited = onCall(
         .trim()
         .toLowerCase();
       if (existingEvaluatorEmail.length > 0 && existingEvaluatorEmail !== authEmail) {
-        throw new HttpsError("permission-denied", "Not allowed to modify this evaluation.");
+        return NextResponse.json(
+          { error: "Not allowed to modify this evaluation." },
+          { status: 403 },
+        );
       }
     }
 
@@ -103,11 +114,14 @@ export const updateEchoEvaluationDraftAudited = onCall(
       evaluationId: data.evaluationDraftId.trim(),
       timestamp: FieldValue.serverTimestamp(),
       actorUid: authUid,
-      actorSource: "updateEchoEvaluationDraftAudited",
+      actorSource: "api_save_draft_route",
       snapshotAfter: snapshotForLog,
     });
 
     await batch.commit();
-    return { ok: true };
-  },
-);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("ECHO save-draft: Firestore write failed.", error);
+    return NextResponse.json({ error: "Could not save draft." }, { status: 500 });
+  }
+};
