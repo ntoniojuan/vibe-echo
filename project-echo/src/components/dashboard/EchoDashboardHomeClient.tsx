@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { EchoDashboardCycleProgressCard } from "@/components/dashboard/EchoDashboardCycleProgressCard";
 import { EchoDashboardInboxCard } from "@/components/dashboard/EchoDashboardInboxCard";
+import { EchoAppPageHeader } from "@/components/shell/EchoAppPageHeader";
 import { useEchoAuth } from "@/hooks/useEchoAuth";
 import { readEchoDashboardCycleProgressProps } from "@/lib/dashboard/readEchoDashboardCycleProgressProps";
 import { readEchoDashboardInboxCardViewModel } from "@/lib/dashboard/readEchoDashboardInboxCardViewModel";
@@ -215,78 +216,76 @@ export const EchoDashboardHomeClient = () => {
 
   return (
     <div className="px-4 py-6 sm:px-6">
-      <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-on-surface sm:text-3xl">Dashboard</h1>
-          <p className="mt-1 max-w-xl text-sm text-on-surface-variant">
-            Your Evaluations: View your drafts and shared feedback.
-          </p>
-        </div>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-outline-variant/50 bg-echo-card">
-            {photoUrl !== null ? (
-              <Image src={photoUrl} alt="" width={40} height={40} className="h-full w-full object-cover" />
-            ) : (
-              <span className="text-sm font-bold text-primary">
-                {userEmail.slice(0, 1).toUpperCase()}
-              </span>
-            )}
-          </div>
-        </div>
-      </header>
-
       <div
-        className="mb-6 flex gap-6 border-b border-outline-variant/40 text-sm font-semibold"
-        role="tablist"
+        className="sticky top-0 z-20 -mx-4 mb-6 border-b border-outline-variant/40 bg-echo-workspace px-4 pb-4 shadow-sm sm:-mx-6 sm:px-6"
       >
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tabId === "feedback"}
-          onClick={() => {
-            setTabId("feedback");
-          }}
-          className={`relative pb-3 ${
-            tabId === "feedback"
-              ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-              : "text-on-surface-variant hover:text-on-surface"
-          }`}
-        >
-          Received
-          {hasUnreadReceived ? (
-            <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
-          ) : null}
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tabId === "myEvals"}
-          onClick={() => {
-            setTabId("myEvals");
-          }}
-          className={`relative pb-3 ${
-            tabId === "myEvals"
-              ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-              : "text-on-surface-variant hover:text-on-surface"
-          }`}
-        >
-          Sent
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tabId === "review"}
-          onClick={() => {
-            setTabId("review");
-          }}
-          className={`relative pb-3 ${
-            tabId === "review"
-              ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-              : "text-on-surface-variant hover:text-on-surface"
-          }`}
-        >
-          Review
-        </button>
+        <EchoAppPageHeader
+          title="Dashboard"
+          description="Your Evaluations: View your drafts and shared feedback."
+          omitOuterMargin
+          trailing={
+            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-outline-variant/50 bg-echo-card">
+              {photoUrl !== null ? (
+                <Image src={photoUrl} alt="" width={40} height={40} className="h-full w-full object-cover" />
+              ) : (
+                <span className="text-sm font-bold text-primary">
+                  {userEmail.slice(0, 1).toUpperCase()}
+                </span>
+              )}
+            </div>
+          }
+        />
+
+        <div className="mt-4 flex gap-6 text-sm font-semibold" role="tablist">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tabId === "feedback"}
+            onClick={() => {
+              setTabId("feedback");
+            }}
+            className={`relative pb-3 ${
+              tabId === "feedback"
+                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
+                : "text-on-surface-variant hover:text-on-surface"
+            }`}
+          >
+            Received
+            {hasUnreadReceived ? (
+              <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+            ) : null}
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tabId === "myEvals"}
+            onClick={() => {
+              setTabId("myEvals");
+            }}
+            className={`relative pb-3 ${
+              tabId === "myEvals"
+                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
+                : "text-on-surface-variant hover:text-on-surface"
+            }`}
+          >
+            Sent
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tabId === "review"}
+            onClick={() => {
+              setTabId("review");
+            }}
+            className={`relative pb-3 ${
+              tabId === "review"
+                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
+                : "text-on-surface-variant hover:text-on-surface"
+            }`}
+          >
+            Review
+          </button>
+        </div>
       </div>
 
       <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-8">

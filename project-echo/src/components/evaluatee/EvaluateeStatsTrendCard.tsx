@@ -20,6 +20,8 @@ type EvaluateeStatsTrendCardProps = {
   overallRatingByCycle: ReadonlyArray<TrendPoint>;
 };
 
+const growthTrendExplainerId = "growth-trend-explainer";
+
 export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStatsTrendCardProps) => {
   const chartData = overallRatingByCycle.map((point) => ({
     cycle: point.cycleLabel,
@@ -31,8 +33,9 @@ export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStats
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="text-[22px] font-semibold leading-snug text-on-surface">Growth trend</h3>
-          <p className="mt-1 text-sm text-on-surface-variant">
-            Overall score (mean of 12 GAINS) for your last four completed evaluations
+          <p id={growthTrendExplainerId} className="mt-1 text-sm text-on-surface-variant">
+            <span className="font-semibold text-on-surface">Growth trend:</span> Your average ACE
+            scores over the last four evaluation cycles.
           </p>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-md bg-[var(--color-surface-container-low)] px-2 py-1 text-xs font-bold text-on-surface">
@@ -43,13 +46,17 @@ export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStats
           Score
         </span>
       </div>
-      <div className="h-[260px] w-full min-w-0 md:h-[300px]">
+      <div
+        className="h-[260px] w-full min-w-0 md:h-[300px]"
+        role="figure"
+        aria-describedby={growthTrendExplainerId}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} margin={{ top: 8, right: 12, left: 0, bottom: 8 }}>
             <CartesianGrid
               strokeDasharray="4 4"
               stroke="var(--color-chart-grid)"
-              opacity={0.55}
+              opacity={0.72}
             />
             <XAxis
               dataKey="cycle"
@@ -70,10 +77,11 @@ export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStats
                 background: "var(--color-surface-container-lowest)",
                 color: "var(--color-on-surface)",
               }}
+              labelFormatter={(cycleLabel) => `${cycleLabel} · Avg ACE, last 4 cycles`}
               formatter={(value) => {
                 const numeric = typeof value === "number" ? value : Number(value);
                 const label = Number.isFinite(numeric) ? numeric.toFixed(2) : String(value);
-                return [label, "Overall score"];
+                return [label, "Average ACE score"];
               }}
             />
             <Line

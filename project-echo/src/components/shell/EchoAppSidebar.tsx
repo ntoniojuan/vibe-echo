@@ -63,7 +63,7 @@ export const EchoAppSidebar = () => {
 
   return (
     <nav
-      className="hidden w-60 shrink-0 flex-col bg-echo-sidebar py-6 text-echo-sidebar-fg md:flex md:h-screen md:max-h-screen md:overflow-hidden"
+      className="hidden h-full min-h-screen w-60 shrink-0 flex-col bg-echo-sidebar py-6 text-echo-sidebar-fg md:flex md:sticky md:top-0 md:self-start md:h-screen md:max-h-screen md:overflow-hidden"
       aria-label="Primary"
     >
       <div className="flex shrink-0 items-start gap-2 px-4 pb-5">
@@ -112,9 +112,9 @@ export const EchoAppSidebar = () => {
         <div className="shrink-0 border-t border-white/10 px-2 pt-4">
           <Link
             href={profileItem.href}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
+            className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
               readEchoAppNavItemIsActive(pathname, profileItem)
-                ? "bg-white/10 text-echo-sidebar-active"
+                ? "bg-white/10 text-echo-sidebar-active before:absolute before:right-0 before:top-1/2 before:h-8 before:w-0.5 before:-translate-y-1/2 before:rounded-l before:bg-echo-sidebar-active"
                 : "text-echo-sidebar-muted hover:bg-white/5 hover:text-echo-sidebar-fg"
             }`}
           >

@@ -69,22 +69,22 @@
 .dark {
   color-scheme: dark;
   /* Deep navy shell; cards/surfaces one step lighter (charcoal → blue-gray) */
-  --color-echo-workspace: #0c1222;
+  --color-echo-workspace: #0b1120;
   --color-echo-card: #1e293b;
   --color-echo-sidebar: #070b14;
   --color-echo-sidebar-muted: #94a3b8;
   --color-echo-sidebar-fg: #faf8f5;
   --color-echo-sidebar-active: #a3c9a8;
-  --color-background: #0c1222;
+  --color-background: #0b1120;
   --color-foreground: #faf8f5;
   --color-primary: #7a9d7f;
   --color-on-primary: #ffffff;
   --color-primary-container: #9dc6a2;
-  --color-on-primary-container: #0c1222;
+  --color-on-primary-container: #0b1120;
   --color-secondary: #94a3b8;
-  --color-on-secondary: #0c1222;
+  --color-on-secondary: #0b1120;
   --color-inverse-surface: #e2e8f0;
-  --color-inverse-on-surface: #0c1222;
+  --color-inverse-on-surface: #0b1120;
   --color-surface-container-lowest: #172033;
   --color-surface-container-low: #243047;
   --color-surface-container-high: #334155;
@@ -98,7 +98,8 @@
   --color-on-error-container: #fecaca;
   --shadow-echo-card: 0 4px 24px rgba(0, 0, 0, 0.35);
   --shadow-echo-nav: 0 -4px 24px rgba(0, 0, 0, 0.4);
-  --color-chart-grid: rgb(226 232 240 / 0.35);
+  /* Brighter grid strokes on midnight surfaces (radar + line charts) */
+  --color-chart-grid: rgb(226 232 240 / 0.62);
   --color-chart-line: #b8d4ba;
   --color-chart-line-dot-fill: #1e293b;
   --color-chart-line-dot-stroke: #b8d4ba;
@@ -135,6 +136,11 @@
 
 .echo-theme-transition {
   transition: var(--echo-transition-theme);
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--color-background);
 }
 
 body {

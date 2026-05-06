@@ -22,8 +22,10 @@ export default function RootLayout({
 }>) {
   /* next-themes (EchoThemeProvider) sets `class="dark"` on <html> when midnight mode is on. */
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${manrope.variable} min-h-screen antialiased`}>
+    <html lang="en" suppressHydrationWarning className="min-h-full bg-background">
+      <body
+        className={`${manrope.variable} echo-theme-transition min-h-screen bg-background text-foreground antialiased`}
+      >
         <EchoThemeProvider>
           <ToastProvider>
             <EchoAuthProvider>{children}</EchoAuthProvider>

@@ -12,8 +12,6 @@ type EvaluateeStatsHeatMapCardProps = {
   competencyHeatMapCells: ReadonlyArray<HeatCell>;
 };
 
-const heatMapGridSlotCount = 16;
-
 /** Swatches match `readEvaluateeHeatMapPresentation` bands (low → high). */
 const heatMapLegendItems = [
   { label: "Severely underdelivers", swatchClass: "bg-[color:var(--echo-heatmap-severe-swatch)]" },
@@ -26,8 +24,6 @@ const heatMapLegendItems = [
 export const EvaluateeStatsHeatMapCard = ({
   competencyHeatMapCells,
 }: EvaluateeStatsHeatMapCardProps) => {
-  const paddingCellCount = Math.max(0, heatMapGridSlotCount - competencyHeatMapCells.length);
-
   return (
     <div className="rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-echo-card)]">
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -46,7 +42,11 @@ export const EvaluateeStatsHeatMapCard = ({
       <p className="mb-4 text-sm text-on-surface-variant">
         Latest completed evaluation — GAINS score (1–5) per sub-competency.
       </p>
-      <div className="grid grid-cols-4 grid-rows-4 gap-3">
+      {/*
+        Three ACE pillars × four sub-competencies = 3×4 grid.
+        Cell order MUST match `echoGainsSubcompetencyCatalog`: A1–A4, then C1–C4, then E1–E4 (`readGrowthAnalyticsFromEvaluationDrafts`).
+      */}
+      <div className="grid grid-cols-4 grid-rows-3 gap-3">
         {competencyHeatMapCells.map((cell) => {
           const presentation = readEvaluateeHeatMapPresentation(cell.strengthScore);
           const titleText = `${cell.label}: ${presentation.bandLabel}`;
@@ -87,13 +87,6 @@ export const EvaluateeStatsHeatMapCard = ({
             </div>
           );
         })}
-        {Array.from({ length: paddingCellCount }).map((_, index) => (
-          <div
-            key={`heatmap-grid-pad-${String(index)}`}
-            className="min-h-[100px] rounded-lg border border-dashed border-outline-variant/25 bg-surface-container-low/20"
-            aria-hidden
-          />
-        ))}
       </div>
     </div>
   );

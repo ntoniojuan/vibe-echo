@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { EchoAboutEchoPopover } from "@/components/shell/EchoAboutEchoPopover";
+import { EchoAppPageHeader } from "@/components/shell/EchoAppPageHeader";
 import { EchoThemeToggle } from "@/components/theme/EchoThemeToggle";
 import { useEchoAuth } from "@/hooks/useEchoAuth";
 import { readEchoBrandFooterAttribution } from "@/lib/echo/readEchoBrandFooterAttribution";
@@ -19,16 +20,16 @@ export const EchoProfilePageClient = () => {
 
   return (
     <div className="px-4 py-6 sm:px-6">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-on-surface">Profile</h1>
-          <p className="mt-1 text-sm text-on-surface-variant">Your account on Project ECHO.</p>
-        </div>
-        <div className="flex shrink-0 items-center gap-2">
-          <EchoAboutEchoPopover variant="surface" />
-          <EchoThemeToggle variant="surface" />
-        </div>
-      </div>
+      <EchoAppPageHeader
+        title="Profile"
+        description="Your account on Project ECHO."
+        trailing={
+          <>
+            <EchoAboutEchoPopover variant="surface" />
+            <EchoThemeToggle variant="surface" />
+          </>
+        }
+      />
       <div className="mt-6 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6">
         <dl className="space-y-3 text-sm">
           <div>

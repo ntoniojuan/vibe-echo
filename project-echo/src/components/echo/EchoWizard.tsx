@@ -5,6 +5,7 @@ import { EchoAceTeammateHistorySidebar } from "@/components/echo/EchoAceTeammate
 import { EchoBottomPinnedNavigationBar } from "@/components/echo/EchoBottomPinnedNavigationBar";
 import { EchoGeneralInfoStep } from "@/components/echo/EchoGeneralInfoStep";
 import { EchoSummaryStep } from "@/components/echo/EchoSummaryStep";
+import { EchoAppPageHeader } from "@/components/shell/EchoAppPageHeader";
 import { useEchoWizard } from "@/hooks/useEchoWizard";
 
 const lastStepIndex = 4;
@@ -47,18 +48,17 @@ export const EchoWizard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-echo-workspace pb-44 pt-6 text-on-background sm:pt-10 md:pb-24">
+    <div className="min-h-screen pb-44 pt-6 text-on-background sm:pt-10 md:pb-24">
       <div
         className={`mx-auto w-full px-4 sm:px-6 md:px-8 ${isAceStep ? "max-w-[1440px]" : "max-w-3xl"}`}
       >
         {stepIndex === 0 || stepIndex === 4 ? (
-          <header className="mb-8 border-b border-surface-container-high pb-6">
-            <p className="text-xs font-bold uppercase tracking-wider text-primary">
-              Step {stepDisplayNumber} of {stepDescriptors.length}
-            </p>
-            <h1 className="mt-2 text-3xl font-bold text-on-surface">{activeStep.title}</h1>
-            <p className="mt-2 max-w-2xl text-on-surface-variant">{activeStep.description}</p>
-          </header>
+          <EchoAppPageHeader
+            eyebrow={`Step ${stepDisplayNumber} of ${stepDescriptors.length}`}
+            title={activeStep.title}
+            description={activeStep.description}
+            withBottomBorder
+          />
         ) : null}
 
         {stepIndex === 0 ? (
