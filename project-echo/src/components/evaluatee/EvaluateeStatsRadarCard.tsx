@@ -39,7 +39,7 @@ export const EvaluateeStatsRadarCard = ({
       <div className="h-[280px] w-full min-w-0 md:h-[320px]">
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart cx="50%" cy="50%" outerRadius="70%" data={chartData}>
-            <PolarGrid stroke="var(--color-chart-grid)" />
+            <PolarGrid stroke="var(--color-chart-grid)" strokeOpacity={0.95} />
             <PolarAngleAxis
               dataKey="subject"
               tick={{ fill: "var(--color-on-surface)", fontSize: 11 }}
@@ -49,6 +49,7 @@ export const EvaluateeStatsRadarCard = ({
               domain={[0, 5]}
               tickCount={6}
               tick={{ fill: "var(--color-on-surface-variant)", fontSize: 10 }}
+              axisLine={{ stroke: "var(--color-chart-grid)" }}
             />
             <Radar
               name="Avg GAINS"

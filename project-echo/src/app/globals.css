@@ -14,18 +14,21 @@
   --color-echo-sidebar-active: #8daa91;
   --color-background: #f8fafc;
   --color-foreground: #111c2c;
-  --color-primary: #4a654f;
+  /* Sage primary (#889F88) + deeper accent for Refine-with-AI emphasis */
+  --color-primary: #889f88;
   --color-on-primary: #ffffff;
-  --color-primary-container: #8daa91;
-  --color-on-primary-container: #253f2b;
+  --color-primary-strong: #5f7260;
+  --color-on-primary-strong: #ffffff;
+  --color-primary-container: #c8d6c8;
+  --color-on-primary-container: #1f2e21;
   --color-secondary: #4f6073;
   --color-on-secondary: #ffffff;
   --color-inverse-surface: #263142;
   --color-inverse-on-surface: #ebf1ff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f0f3ff;
-  --color-surface-container-high: #dee8ff;
-  --color-surface-variant: #d8e3fa;
+  --color-surface-container-low: #eef2ee;
+  --color-surface-container-high: #dfe7df;
+  --color-surface-variant: #d4dcd4;
   --color-outline: #737972;
   --color-outline-variant: #c2c8c0;
   --color-on-surface: #111c2c;
@@ -69,9 +72,9 @@
   --echo-heatmap-severe-swatch: rgb(230 81 0 / 0.8);
 }
 
-.dark {
+html.dark {
   color-scheme: dark;
-  /* Deep navy shell; cards/surfaces one step lighter (charcoal → blue-gray) */
+  /* Deep navy shell; elevated cards one step lighter */
   --color-echo-workspace: #0b1120;
   --color-echo-main-canvas: #0b1120;
   --color-echo-elevated-card: #131b2b;
@@ -81,10 +84,12 @@
   --color-echo-sidebar-fg: #faf8f5;
   --color-echo-sidebar-active: #a3c9a8;
   --color-background: #0b1120;
-  --color-foreground: #faf8f5;
-  --color-primary: #7a9d7f;
+  --color-foreground: #f8fafc;
+  --color-primary: #889f88;
   --color-on-primary: #ffffff;
-  --color-primary-container: #9dc6a2;
+  --color-primary-strong: #6b826c;
+  --color-on-primary-strong: #ffffff;
+  --color-primary-container: #a3bda4;
   --color-on-primary-container: #0b1120;
   --color-secondary: #94a3b8;
   --color-on-secondary: #0b1120;
@@ -96,15 +101,15 @@
   --color-surface-variant: #334155;
   --color-outline: #94a3b8;
   --color-outline-variant: #64748b;
-  --color-on-surface: #faf8f5;
+  --color-on-surface: #f8fafc;
   --color-on-surface-variant: #b8c5d4;
-  --color-on-background: #faf8f5;
+  --color-on-background: #f8fafc;
   --color-error-container: #7f1d1d;
   --color-on-error-container: #fecaca;
   --shadow-echo-card: 0 4px 24px rgba(0, 0, 0, 0.35);
   --shadow-echo-nav: 0 -4px 24px rgba(0, 0, 0, 0.4);
   /* Brighter grid strokes on midnight surfaces (radar + line charts) */
-  --color-chart-grid: rgb(226 232 240 / 0.62);
+  --color-chart-grid: rgb(226 232 240 / 0.78);
   --color-chart-line: #b8d4ba;
   --color-chart-line-dot-fill: #1e293b;
   --color-chart-line-dot-stroke: #b8d4ba;
@@ -155,15 +160,20 @@ body {
   transition: var(--echo-transition-theme);
 }
 
+html.dark body {
+  background-color: #0b1120;
+  color: #f8fafc;
+}
+
 @layer base {
-  .dark :where(textarea, select) {
+  html.dark :where(textarea, select) {
     background-color: var(--color-surface-container-low);
     color: var(--color-on-surface);
     border-color: var(--color-outline-variant);
     caret-color: var(--color-on-surface);
   }
 
-  .dark
+  html.dark
     :where(input):not([type="button"]):not([type="submit"]):not([type="reset"]):not(
       [type="checkbox"]
     ):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not(
@@ -175,8 +185,8 @@ body {
     caret-color: var(--color-on-surface);
   }
 
-  .dark :where(textarea, select)::placeholder,
-  .dark
+  html.dark :where(textarea, select)::placeholder,
+  html.dark
     :where(input):not([type="button"]):not([type="submit"]):not([type="reset"]):not(
       [type="checkbox"]
     ):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not(

@@ -206,7 +206,7 @@ export const EchoAceRefinementSection = ({
             onClick={() => {
               void requestMcqs();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-secondary px-4 py-2 text-xs font-bold uppercase tracking-wide text-on-secondary shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center justify-center rounded-full bg-primary-strong px-4 py-2 text-xs font-bold uppercase tracking-wide text-on-primary-strong shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {phase === "generating" ? "Generating…" : "Refine with AI"}
           </button>

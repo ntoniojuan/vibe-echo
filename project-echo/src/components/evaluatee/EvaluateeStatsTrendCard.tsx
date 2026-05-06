@@ -56,7 +56,7 @@ export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStats
             <CartesianGrid
               strokeDasharray="4 4"
               stroke="var(--color-chart-grid)"
-              opacity={0.72}
+              opacity={0.88}
             />
             <XAxis
               dataKey="cycle"
