@@ -20,7 +20,7 @@ export const EchoDashboardCycleProgressCard = ({
   const sentRatio = sentGoal > 0 ? Math.min(100, Math.round((sentCount / sentGoal) * 100)) : 0;
 
   return (
-    <aside className="rounded-2xl border border-outline-variant/35 bg-echo-card p-6 shadow-[var(--shadow-echo-card)]">
+    <aside className="rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-800">
       <h2 className="text-lg font-semibold text-on-surface">Cycle progress</h2>
       <div className="mt-6 space-y-5">
         <div>

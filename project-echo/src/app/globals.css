@@ -4,12 +4,15 @@
   --font-sans: var(--font-manrope);
   /* Sage workspace + dark sidebar (dashboard shell); marketing may keep --color-background */
   --color-echo-workspace: #e4ebe4;
+  /* Authenticated main canvas (slate-50) vs elevated cards (white / midnight slate panel) */
+  --color-echo-main-canvas: #f8fafc;
+  --color-echo-elevated-card: #ffffff;
   --color-echo-card: #f6f8f5;
   --color-echo-sidebar: #1e293b;
   --color-echo-sidebar-muted: #94a3b8;
   --color-echo-sidebar-fg: #f8fafc;
   --color-echo-sidebar-active: #8daa91;
-  --color-background: #f9f9ff;
+  --color-background: #f8fafc;
   --color-foreground: #111c2c;
   --color-primary: #4a654f;
   --color-on-primary: #ffffff;
@@ -70,6 +73,8 @@
   color-scheme: dark;
   /* Deep navy shell; cards/surfaces one step lighter (charcoal → blue-gray) */
   --color-echo-workspace: #0b1120;
+  --color-echo-main-canvas: #0b1120;
+  --color-echo-elevated-card: #131b2b;
   --color-echo-card: #1e293b;
   --color-echo-sidebar: #070b14;
   --color-echo-sidebar-muted: #94a3b8;

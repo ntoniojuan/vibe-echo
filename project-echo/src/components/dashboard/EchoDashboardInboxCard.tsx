@@ -11,6 +11,8 @@ type EchoDashboardInboxCardProps = {
   snippet: string;
   relativeTimeLabel: string;
   fromLine: string;
+  fromLineUsePlaceholderStyle?: boolean;
+  snippetUsePlaceholderStyle?: boolean;
   badgeLabel: string | null;
   badgeClassName: string | null;
   acePills: readonly AcePill[];
@@ -24,6 +26,8 @@ export const EchoDashboardInboxCard = ({
   snippet,
   relativeTimeLabel,
   fromLine,
+  fromLineUsePlaceholderStyle = false,
+  snippetUsePlaceholderStyle = false,
   badgeLabel,
   badgeClassName,
   acePills,
@@ -34,7 +38,7 @@ export const EchoDashboardInboxCard = ({
   const showPrimary = primaryActionLabel !== null && onPrimaryAction !== null;
 
   return (
-    <article className="rounded-2xl border border-outline-variant/35 bg-echo-card p-5 shadow-[var(--shadow-echo-card)]">
+    <article className="rounded-xl border border-slate-200 bg-echo-elevated-card p-5 shadow-sm dark:border-slate-800">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
           {badgeLabel !== null && badgeClassName !== null ? (
@@ -58,8 +62,16 @@ export const EchoDashboardInboxCard = ({
           {relativeTimeLabel}
         </span>
       </div>
-      <p className="mt-2 text-xs text-on-surface-variant">{fromLine}</p>
-      <p className="mt-3 text-sm leading-relaxed text-on-surface">{snippet}</p>
+      <p
+        className={`mt-2 text-xs ${fromLineUsePlaceholderStyle ? "italic text-on-surface-variant/90" : "text-on-surface-variant"}`}
+      >
+        {fromLine}
+      </p>
+      <p
+        className={`mt-3 text-sm leading-relaxed ${snippetUsePlaceholderStyle ? "italic text-on-surface-variant" : "text-on-surface"}`}
+      >
+        {snippet}
+      </p>
       <div className="mt-4 border-t border-outline-variant/25 pt-4">
         <div className="flex flex-col gap-3 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between min-[480px]:gap-2">
           <div className="flex flex-wrap gap-2" aria-label="ACE pillars">

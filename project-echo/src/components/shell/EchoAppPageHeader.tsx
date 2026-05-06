@@ -9,6 +9,8 @@ export type EchoAppPageHeaderProps = {
   withBottomBorder?: boolean;
   /** Omit default bottom margin (e.g. when nested in a sticky chrome strip). */
   omitOuterMargin?: boolean;
+  /** Thin divider under the header row (primary app routes). */
+  showBottomDivider?: boolean;
 };
 
 export const EchoAppPageHeader = ({
@@ -18,10 +20,18 @@ export const EchoAppPageHeader = ({
   trailing,
   withBottomBorder = false,
   omitOuterMargin = false,
+  showBottomDivider = false,
 }: EchoAppPageHeaderProps) => {
-  const layoutClassName = withBottomBorder
-    ? "flex flex-col gap-4 border-b border-outline-variant/40 pb-6 sm:flex-row sm:items-start sm:justify-between"
-    : "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between";
+  const baseLayout =
+    "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between";
+  let layoutClassName = baseLayout;
+  if (withBottomBorder) {
+    layoutClassName =
+      "flex flex-col gap-4 border-b border-outline-variant/40 pb-6 sm:flex-row sm:items-start sm:justify-between";
+  } else if (showBottomDivider) {
+    layoutClassName =
+      "flex flex-col gap-4 border-b border-slate-200 pb-6 dark:border-slate-800 sm:flex-row sm:items-start sm:justify-between";
+  }
 
   const marginClassName = omitOuterMargin ? "" : "mb-8";
 

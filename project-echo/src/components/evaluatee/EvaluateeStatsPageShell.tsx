@@ -82,25 +82,19 @@ export const EvaluateeStatsPageShell = () => {
   };
 
   if (loading || !fetchFinished) {
-    return (
-      <div className="px-4 py-6 text-on-surface-variant sm:px-6">Loading Growth analytics…</div>
-    );
+    return <div className="text-on-surface-variant">Loading Growth analytics…</div>;
   }
 
   const authEmail = user?.email?.trim() ?? "";
   const isSignedOut = authEmail.length === 0;
 
   if (isSignedOut) {
-    return (
-      <div className="px-4 py-6 sm:px-6">
-        <EvaluateeGrowthAnalyticsEmptyState variant="signedOut" />
-      </div>
-    );
+    return <EvaluateeGrowthAnalyticsEmptyState variant="signedOut" />;
   }
 
   if (fetchError) {
     return (
-      <div className="px-4 py-6 sm:px-6">
+      <>
         <p className="mb-6 rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant">
           Growth analytics could not load evaluations. Check the console and Firestore rules for
           list access on `echoEvaluationDrafts`, then refresh this page.
@@ -109,7 +103,7 @@ export const EvaluateeStatsPageShell = () => {
           variant="signedInNoSubmissions"
           evaluateeFirstName={readEvaluateeFirstName()}
         />
-      </div>
+      </>
     );
   }
 
@@ -117,18 +111,12 @@ export const EvaluateeStatsPageShell = () => {
     const emptyVariant =
       submittedEvalCount === 0 ? "signedInNoSubmissions" : "signedInEvaluationsIncomplete";
     return (
-      <div className="px-4 py-6 sm:px-6">
-        <EvaluateeGrowthAnalyticsEmptyState
-          variant={emptyVariant}
-          evaluateeFirstName={readEvaluateeFirstName()}
-        />
-      </div>
+      <EvaluateeGrowthAnalyticsEmptyState
+        variant={emptyVariant}
+        evaluateeFirstName={readEvaluateeFirstName()}
+      />
     );
   }
 
-  return (
-    <div className="px-4 py-6 sm:px-6">
-      <EvaluateeStatsDashboard {...statsProps} />
-    </div>
-  );
+  return <EvaluateeStatsDashboard {...statsProps} />;
 };

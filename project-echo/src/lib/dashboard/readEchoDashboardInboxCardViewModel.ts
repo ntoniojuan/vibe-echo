@@ -1,4 +1,7 @@
-import { readCollapsedEvaluationReasonSnippet } from "@/lib/dashboard/readCollapsedEvaluationReasonSnippet";
+import {
+  echoCollapsedEmptyEvaluationReasonLabel,
+  readCollapsedEvaluationReasonSnippet,
+} from "@/lib/dashboard/readCollapsedEvaluationReasonSnippet";
 import { readRelativeTimeShortLabel } from "@/lib/dashboard/readRelativeTimeShortLabel";
 import type { EchoEvaluationDocumentRecord } from "@/lib/firebase/echoEvaluationDocumentRecordType";
 
@@ -13,6 +16,8 @@ type EchoDashboardInboxCardViewModel = {
   snippet: string;
   relativeTimeLabel: string;
   fromLine: string;
+  fromLineUsePlaceholderStyle: boolean;
+  snippetUsePlaceholderStyle: boolean;
   badgeLabel: string | null;
   badgeClassName: string | null;
   acePills: readonly {
@@ -81,6 +86,7 @@ export const readEchoDashboardInboxCardViewModel = (
   let title: string;
   let fromLine: string;
   let snippetMax = 120;
+  let fromLineUsePlaceholderStyle = false;
 
   if (variant === "review") {
     title = name.length > 0 ? `Finish · ${name}` : "Finish evaluation";
@@ -97,6 +103,10 @@ export const readEchoDashboardInboxCardViewModel = (
     }
     fromLine = `${evaluatorNote} · ${relationship}`;
     snippetMax = 100;
+    const anonymousSubmission = payload.isAnonymous === true;
+    const unknownEvaluator =
+      !anonymousSubmission && payload.evaluatorEmail.trim().length === 0;
+    fromLineUsePlaceholderStyle = anonymousSubmission || unknownEvaluator;
   } else if (payload.status === "draft") {
     title = name.length > 0 ? `Draft · ${name}` : "Draft evaluation";
     fromLine =
@@ -116,6 +126,7 @@ export const readEchoDashboardInboxCardViewModel = (
   }
 
   const snippet = readCollapsedEvaluationReasonSnippet(payload.evaluationReason, snippetMax);
+  const snippetUsePlaceholderStyle = snippet === echoCollapsedEmptyEvaluationReasonLabel;
 
   const acePills = [
     {
@@ -144,6 +155,8 @@ export const readEchoDashboardInboxCardViewModel = (
     snippet,
     relativeTimeLabel,
     fromLine,
+    fromLineUsePlaceholderStyle,
+    snippetUsePlaceholderStyle,
     badgeLabel: badge?.label ?? null,
     badgeClassName: badge?.className ?? null,
     acePills,

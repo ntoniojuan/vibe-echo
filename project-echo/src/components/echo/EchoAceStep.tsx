@@ -11,7 +11,7 @@ import type { GainsLevel } from "@/lib/echo/gainsLevelType";
 const echoGainsLevelRadioOptions = readEchoGainsLevelRadioOptions();
 
 const echoAceGlassCardClass =
-  "relative overflow-hidden rounded-xl border border-outline-variant/30 bg-surface-container-lowest/95 p-6 shadow-[0_4px_20px_rgba(17,28,44,0.04)] backdrop-blur-sm";
+  "relative overflow-hidden rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-800";
 
 type EchoAceStepProps = {
   aceKey: EchoAceStepKey;

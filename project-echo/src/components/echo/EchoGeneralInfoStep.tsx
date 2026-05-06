@@ -9,7 +9,7 @@ type EchoGeneralInfoStepProps = {
 export const EchoGeneralInfoStep = ({ formState, onChange }: EchoGeneralInfoStepProps) => {
   return (
     <div className="space-y-6">
-      <section className="rounded-2xl border border-surface-container-high bg-surface-container-lowest p-6 shadow-[var(--shadow-echo-card)]">
+      <section className="rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-800">
         <h2 className="text-lg font-semibold text-on-surface">Evaluatee details</h2>
         <p className="mt-1 text-sm text-on-surface-variant">
           Provide identifying information for the person you are evaluating.

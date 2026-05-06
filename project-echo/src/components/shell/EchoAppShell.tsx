@@ -8,7 +8,9 @@ export const EchoAppShell = ({ children }: { children: React.ReactNode }) => {
     <div className="echo-theme-transition flex min-h-screen items-stretch text-on-surface">
       <EchoAppSidebar />
       <div className="echo-theme-transition flex min-h-screen min-w-0 flex-1 flex-col pb-20 md:pb-0">
-        <main className="flex-1">{children}</main>
+        <main className="echo-theme-transition flex-1 bg-echo-main-canvas px-6 py-6 lg:px-8">
+          {children}
+        </main>
       </div>
       <EchoAppBottomNav />
     </div>

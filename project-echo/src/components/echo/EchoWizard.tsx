@@ -49,9 +49,7 @@ export const EchoWizard = () => {
 
   return (
     <div className="min-h-screen pb-44 pt-6 text-on-background sm:pt-10 md:pb-24">
-      <div
-        className={`mx-auto w-full px-4 sm:px-6 md:px-8 ${isAceStep ? "max-w-[1440px]" : "max-w-3xl"}`}
-      >
+      <div className={`mx-auto w-full ${isAceStep ? "max-w-[1440px]" : "max-w-3xl"}`}>
         {stepIndex === 0 || stepIndex === 4 ? (
           <EchoAppPageHeader
             eyebrow={`Step ${stepDisplayNumber} of ${stepDescriptors.length}`}

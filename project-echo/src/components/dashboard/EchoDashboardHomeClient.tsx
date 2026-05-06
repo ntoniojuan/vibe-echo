@@ -141,14 +141,14 @@ export const EchoDashboardHomeClient = () => {
   const renderFeed = () => {
     if (authLoading || inboxLoading) {
       return (
-        <div className="rounded-2xl border border-outline-variant/35 bg-echo-card p-8 text-center text-sm text-on-surface-variant">
+        <div className="rounded-xl border border-slate-200 bg-echo-elevated-card p-8 text-center text-sm text-on-surface-variant shadow-sm dark:border-slate-800">
           Loading inbox…
         </div>
       );
     }
     if (userEmail.length === 0) {
       return (
-        <div className="rounded-2xl border border-outline-variant/35 bg-echo-card p-8 text-center">
+        <div className="rounded-xl border border-slate-200 bg-echo-elevated-card p-8 text-center shadow-sm dark:border-slate-800">
           <p className="font-semibold text-on-surface">Sign in to see your inbox</p>
           <p className="mt-2 text-sm text-on-surface-variant">
             Your lists load from Firestore once authenticated.
@@ -158,7 +158,7 @@ export const EchoDashboardHomeClient = () => {
     }
     if (inboxError) {
       return (
-        <div className="rounded-2xl border border-outline-variant/35 bg-echo-card p-8 text-center">
+        <div className="rounded-xl border border-slate-200 bg-echo-elevated-card p-8 text-center shadow-sm dark:border-slate-800">
           <p className="font-semibold text-on-surface">Could not load inbox</p>
           <p className="mt-2 text-sm text-on-surface-variant">
             Check Firestore rules for list access on{" "}
@@ -169,7 +169,7 @@ export const EchoDashboardHomeClient = () => {
     }
     if (activeRecords.length === 0) {
       return (
-        <div className="rounded-2xl border border-outline-variant/35 bg-echo-card p-8 text-center">
+        <div className="rounded-xl border border-slate-200 bg-echo-elevated-card p-8 text-center shadow-sm dark:border-slate-800">
           <p className="font-semibold text-on-surface">{emptyTitle}</p>
           <p className="mt-2 text-sm text-on-surface-variant">{emptyBody}</p>
         </div>
@@ -200,6 +200,8 @@ export const EchoDashboardHomeClient = () => {
                 snippet={viewModel.snippet}
                 relativeTimeLabel={viewModel.relativeTimeLabel}
                 fromLine={viewModel.fromLine}
+                fromLineUsePlaceholderStyle={viewModel.fromLineUsePlaceholderStyle}
+                snippetUsePlaceholderStyle={viewModel.snippetUsePlaceholderStyle}
                 badgeLabel={viewModel.badgeLabel}
                 badgeClassName={viewModel.badgeClassName}
                 acePills={viewModel.acePills}
@@ -215,10 +217,8 @@ export const EchoDashboardHomeClient = () => {
   };
 
   return (
-    <div className="px-4 py-6 sm:px-6">
-      <div
-        className="sticky top-0 z-20 -mx-4 mb-6 border-b border-outline-variant/40 bg-echo-workspace px-4 pb-4 shadow-sm sm:-mx-6 sm:px-6"
-      >
+    <div className="pb-10">
+      <div className="sticky top-0 z-40 -mx-6 mb-6 border-b border-slate-200/80 bg-white/80 px-6 pb-4 pt-1 backdrop-blur-md dark:border-slate-800/80 dark:bg-[#0b1120]/70 lg:-mx-8 lg:px-8">
         <EchoAppPageHeader
           title="Dashboard"
           description="Your Evaluations: View your drafts and shared feedback."
@@ -244,7 +244,7 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("feedback");
             }}
-            className={`relative pb-3 ${
+            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "feedback"
                 ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
                 : "text-on-surface-variant hover:text-on-surface"
@@ -262,7 +262,7 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("myEvals");
             }}
-            className={`relative pb-3 ${
+            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "myEvals"
                 ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
                 : "text-on-surface-variant hover:text-on-surface"
@@ -277,7 +277,7 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("review");
             }}
-            className={`relative pb-3 ${
+            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "review"
                 ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
                 : "text-on-surface-variant hover:text-on-surface"

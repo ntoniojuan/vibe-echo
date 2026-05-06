@@ -1,5 +1,6 @@
 "use client";
 
+import { LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { EchoAboutEchoPopover } from "@/components/shell/EchoAboutEchoPopover";
 import { EchoAppPageHeader } from "@/components/shell/EchoAppPageHeader";
@@ -19,10 +20,11 @@ export const EchoProfilePageClient = () => {
   };
 
   return (
-    <div className="px-4 py-6 sm:px-6">
+    <div className="pb-6">
       <EchoAppPageHeader
         title="Profile"
         description="Your account on Project ECHO."
+        showBottomDivider
         trailing={
           <>
             <EchoAboutEchoPopover variant="surface" />
@@ -30,7 +32,7 @@ export const EchoProfilePageClient = () => {
           </>
         }
       />
-      <div className="mt-6 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6">
+      <div className="mt-6 rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-800">
         <dl className="space-y-3 text-sm">
           <div>
             <dt className="font-semibold text-on-surface-variant">Display name</dt>
@@ -44,8 +46,9 @@ export const EchoProfilePageClient = () => {
         <button
           type="button"
           onClick={onSignOut}
-          className="mt-6 rounded-full border border-outline px-5 py-2.5 text-sm font-bold text-on-surface hover:bg-surface-container-low"
+          className="mt-6 inline-flex items-center gap-2 rounded-full border border-outline px-5 py-2.5 text-sm font-bold text-on-surface hover:bg-surface-container-low"
         >
+          <LogOut className="h-4 w-4 shrink-0 opacity-90" strokeWidth={2} aria-hidden />
           Sign out
         </button>
       </div>
