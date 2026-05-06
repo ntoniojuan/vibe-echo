@@ -105,23 +105,41 @@ export const POST = async (request: Request) => {
       evaluatorUid: authUid,
     };
 
-    const batch = database.batch();
-    batch.set(documentReference, documentPayload, { merge: true });
-    const logReference = database.collection("system_logs").doc();
-    batch.set(logReference, {
-      eventType: "edit",
-      domain: "echo_evaluation_draft",
-      evaluationId: data.evaluationDraftId.trim(),
-      timestamp: FieldValue.serverTimestamp(),
-      actorUid: authUid,
-      actorSource: "api_save_draft_route",
-      snapshotAfter: snapshotForLog,
-    });
+    await documentReference.set(documentPayload, { merge: true });
 
-    await batch.commit();
+    try {
+      const logReference = database.collection("system_logs").doc();
+      await logReference.set({
+        eventType: "edit",
+        domain: "echo_evaluation_draft",
+        evaluationId: data.evaluationDraftId.trim(),
+        timestamp: FieldValue.serverTimestamp(),
+        actorUid: authUid,
+        actorSource: "api_save_draft_route",
+        snapshotAfter: snapshotForLog,
+      });
+    } catch (logError) {
+      console.error(
+        "ECHO save-draft: draft saved but system_logs audit write failed.",
+        logError,
+      );
+    }
+
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("ECHO save-draft: Firestore write failed.", error);
-    return NextResponse.json({ error: "Could not save draft." }, { status: 500 });
+    const firestoreCode =
+      error !== null && typeof error === "object" && "code" in error
+        ? String((error as { code: unknown }).code)
+        : "";
+    console.error("ECHO save-draft: Firestore draft write failed.", firestoreCode, error);
+    const isDev = process.env.NODE_ENV === "development";
+    const debugMessage = error instanceof Error ? error.message : "";
+    return NextResponse.json(
+      {
+        error: "Could not save draft.",
+        ...(isDev ? { debugMessage, firestoreCode } : {}),
+      },
+      { status: 500 },
+    );
   }
 };

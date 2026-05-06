@@ -8,6 +8,7 @@ import type { EchoWizardFormState } from "@/lib/echo/echoWizardFormState";
 import { echoWizardDraftStorageKey } from "@/lib/echo/echoWizardDraftStorageKey";
 import { readEchoEvaluationDraft } from "@/lib/firebase/readEchoEvaluationDraft";
 import { updateEchoEvaluationDraft } from "@/lib/firebase/updateEchoEvaluationDraft";
+import { readEchoObservationForPlainDisplay } from "@/lib/echo/readEchoObservationForPlainDisplay";
 import { readEchoAceStepKeyFromWizardStepIndex } from "@/lib/echo/readEchoAceStepKeyFromWizardStepIndex";
 import { readEchoAreAceStepGainsComplete } from "@/lib/echo/readEchoAreAceStepGainsComplete";
 import { readEchoAreAllGainsRatingsComplete } from "@/lib/echo/readEchoAreAllGainsRatingsComplete";
@@ -73,9 +74,15 @@ export const useEchoWizard = () => {
           isAnonymous: existingDraft.isAnonymous,
           relationshipType: existingDraft.relationshipType,
           evaluationReason: existingDraft.evaluationReason,
-          aptitudeObservations: existingDraft.aptitudeObservations,
-          characterObservations: existingDraft.characterObservations,
-          effectivenessObservations: existingDraft.effectivenessObservations,
+          aptitudeObservations: readEchoObservationForPlainDisplay(
+            existingDraft.aptitudeObservations,
+          ),
+          characterObservations: readEchoObservationForPlainDisplay(
+            existingDraft.characterObservations,
+          ),
+          effectivenessObservations: readEchoObservationForPlainDisplay(
+            existingDraft.effectivenessObservations,
+          ),
           gainsRatings: existingDraft.gainsRatings,
         });
         const safeStepIndex = Math.min(

@@ -8,11 +8,10 @@ import { EchoAppPageHeader } from "@/components/shell/EchoAppPageHeader";
 
 export const EvaluateeStatsDashboard = (props: EvaluateeStatsDashboardProps) => {
   return (
-    <div className="mx-auto w-full max-w-[1200px]">
+    <div className="w-full">
       <EchoAppPageHeader
-        eyebrow="Growth analytics"
-        title="Your ECHO performance"
-        description={`${props.evaluateeDisplayName} — ACE balance from all completed cycles, overall score trend (last four), and latest GAINS heat map.`}
+        title="Performance"
+        description="Track your ACE balance, score trends, and GAINS heat maps."
         showBottomDivider
       />
       <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">

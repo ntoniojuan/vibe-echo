@@ -38,6 +38,7 @@ export const EchoWizard = () => {
   const activeStep = stepDescriptors[stepIndex];
   const stepDisplayNumber = stepIndex + 1;
   const isAceStep = stepIndex >= 1 && stepIndex <= 3;
+  const showAceBannerError = isAceStep && aceRatingsStepError !== null;
 
   if (draftId === null) {
     return (
@@ -48,7 +49,9 @@ export const EchoWizard = () => {
   }
 
   return (
-    <div className="min-h-screen pb-44 pt-6 text-on-background sm:pt-10 md:pb-24">
+    <div
+      className={`min-h-screen pt-6 text-on-background sm:pt-10 ${showAceBannerError ? "pb-60 md:pb-32" : "pb-44 md:pb-24"}`}
+    >
       <div className={`mx-auto w-full ${isAceStep ? "max-w-[1440px]" : "max-w-3xl"}`}>
         {stepIndex === 0 || stepIndex === 4 ? (
           <EchoAppPageHeader
@@ -65,25 +68,26 @@ export const EchoWizard = () => {
 
         {stepIndex === 1 ? (
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-8">
-            <div className="min-w-0 flex-1 lg:max-w-[800px]">
-              <EchoAceStep
-                draftId={draftId}
-                aceKey="aptitude"
-                stepNumber={stepDisplayNumber}
-                totalSteps={stepDescriptors.length}
-                observations={formState.aptitudeObservations}
-                gainsRatings={formState.gainsRatings}
-                aceRatingsStepError={aceRatingsStepError}
-                onObservationsChange={(value) => {
-                  updateFormState({ aptitudeObservations: value });
-                }}
-                onGainsRatingChange={(code, level) => {
-                  dismissAceRatingsError();
-                  updateFormState({
-                    gainsRatings: { ...formState.gainsRatings, [code]: level },
-                  });
-                }}
-              />
+            <div className="flex w-full min-w-0 flex-1 justify-center">
+              <div className="w-full max-w-[800px]">
+                <EchoAceStep
+                  draftId={draftId}
+                  aceKey="aptitude"
+                  stepNumber={stepDisplayNumber}
+                  totalSteps={stepDescriptors.length}
+                  observations={formState.aptitudeObservations}
+                  gainsRatings={formState.gainsRatings}
+                  onObservationsChange={(value) => {
+                    updateFormState({ aptitudeObservations: value });
+                  }}
+                  onGainsRatingChange={(code, level) => {
+                    dismissAceRatingsError();
+                    updateFormState({
+                      gainsRatings: { ...formState.gainsRatings, [code]: level },
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="lg:sticky lg:top-0 lg:max-h-[min(100vh-5.5rem,56rem)] lg:self-start lg:overflow-y-auto">
               <EchoAceTeammateHistorySidebar
@@ -96,25 +100,26 @@ export const EchoWizard = () => {
 
         {stepIndex === 2 ? (
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-8">
-            <div className="min-w-0 flex-1 lg:max-w-[800px]">
-              <EchoAceStep
-                draftId={draftId}
-                aceKey="character"
-                stepNumber={stepDisplayNumber}
-                totalSteps={stepDescriptors.length}
-                observations={formState.characterObservations}
-                gainsRatings={formState.gainsRatings}
-                aceRatingsStepError={aceRatingsStepError}
-                onObservationsChange={(value) => {
-                  updateFormState({ characterObservations: value });
-                }}
-                onGainsRatingChange={(code, level) => {
-                  dismissAceRatingsError();
-                  updateFormState({
-                    gainsRatings: { ...formState.gainsRatings, [code]: level },
-                  });
-                }}
-              />
+            <div className="flex w-full min-w-0 flex-1 justify-center">
+              <div className="w-full max-w-[800px]">
+                <EchoAceStep
+                  draftId={draftId}
+                  aceKey="character"
+                  stepNumber={stepDisplayNumber}
+                  totalSteps={stepDescriptors.length}
+                  observations={formState.characterObservations}
+                  gainsRatings={formState.gainsRatings}
+                  onObservationsChange={(value) => {
+                    updateFormState({ characterObservations: value });
+                  }}
+                  onGainsRatingChange={(code, level) => {
+                    dismissAceRatingsError();
+                    updateFormState({
+                      gainsRatings: { ...formState.gainsRatings, [code]: level },
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="lg:sticky lg:top-0 lg:max-h-[min(100vh-5.5rem,56rem)] lg:self-start lg:overflow-y-auto">
               <EchoAceTeammateHistorySidebar
@@ -127,25 +132,26 @@ export const EchoWizard = () => {
 
         {stepIndex === 3 ? (
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-8">
-            <div className="min-w-0 flex-1 lg:max-w-[800px]">
-              <EchoAceStep
-                draftId={draftId}
-                aceKey="effectiveness"
-                stepNumber={stepDisplayNumber}
-                totalSteps={stepDescriptors.length}
-                observations={formState.effectivenessObservations}
-                gainsRatings={formState.gainsRatings}
-                aceRatingsStepError={aceRatingsStepError}
-                onObservationsChange={(value) => {
-                  updateFormState({ effectivenessObservations: value });
-                }}
-                onGainsRatingChange={(code, level) => {
-                  dismissAceRatingsError();
-                  updateFormState({
-                    gainsRatings: { ...formState.gainsRatings, [code]: level },
-                  });
-                }}
-              />
+            <div className="flex w-full min-w-0 flex-1 justify-center">
+              <div className="w-full max-w-[800px]">
+                <EchoAceStep
+                  draftId={draftId}
+                  aceKey="effectiveness"
+                  stepNumber={stepDisplayNumber}
+                  totalSteps={stepDescriptors.length}
+                  observations={formState.effectivenessObservations}
+                  gainsRatings={formState.gainsRatings}
+                  onObservationsChange={(value) => {
+                    updateFormState({ effectivenessObservations: value });
+                  }}
+                  onGainsRatingChange={(code, level) => {
+                    dismissAceRatingsError();
+                    updateFormState({
+                      gainsRatings: { ...formState.gainsRatings, [code]: level },
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="lg:sticky lg:top-0 lg:max-h-[min(100vh-5.5rem,56rem)] lg:self-start lg:overflow-y-auto">
               <EchoAceTeammateHistorySidebar
@@ -171,6 +177,7 @@ export const EchoWizard = () => {
         lastStepIndex={lastStepIndex}
         isSaving={isSaving}
         submitDisabled={stepIndex === lastStepIndex && !summaryAccuracyAcknowledged}
+        stepValidationMessage={isAceStep ? aceRatingsStepError : null}
         onBack={goBack}
         onNext={() => {
           void goNext();

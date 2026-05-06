@@ -32,22 +32,21 @@ export const EvaluateeGrowthAnalyticsEmptyState = ({
   }
 
   return (
-    <div className="mx-auto flex min-h-[60vh] w-full max-w-lg flex-col justify-center px-4 py-12 sm:px-6">
-      <p className="text-xs font-bold uppercase tracking-wider text-primary">Growth analytics</p>
-      <h2 className="mt-2 text-3xl font-bold leading-tight text-on-surface">{title}</h2>
+    <div className="flex min-h-[60vh] w-full flex-col justify-center py-12">
+      <h2 className="text-3xl font-bold leading-tight text-on-surface">{title}</h2>
       <p className="mt-4 text-lg text-on-surface-variant">{body}</p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         {variant === "signedInEvaluationsIncomplete" ? (
           <Link
             href="/dashboard"
-            className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 text-center text-sm font-bold text-on-primary shadow-md hover:opacity-90"
+            className="inline-flex items-center justify-center rounded-full bg-[#4A634A] px-8 py-3.5 text-center text-sm font-bold text-white shadow-md transition-colors hover:bg-[#D1DCD1] hover:text-slate-900"
           >
             Go to dashboard
           </Link>
         ) : (
           <Link
             href="/evaluation"
-            className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 text-center text-sm font-bold text-on-primary shadow-md hover:opacity-90"
+            className="inline-flex items-center justify-center rounded-full bg-[#4A634A] px-8 py-3.5 text-center text-sm font-bold text-white shadow-md transition-colors hover:bg-[#D1DCD1] hover:text-slate-900"
           >
             Start your first ECHO
           </Link>

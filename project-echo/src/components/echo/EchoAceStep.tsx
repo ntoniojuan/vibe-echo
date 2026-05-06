@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { EchoAceRefinementSection } from "@/components/echo/EchoAceRefinementSection";
 import { EchoAceStepPillarIcon } from "@/components/echo/EchoAceStepPillarIcon";
@@ -22,7 +24,6 @@ type EchoAceStepProps = {
   onObservationsChange: (value: string) => void;
   gainsRatings: Partial<Record<GainsSubcompetencyCode, GainsLevel>>;
   onGainsRatingChange: (code: GainsSubcompetencyCode, level: GainsLevel) => void;
-  aceRatingsStepError: string | null;
 };
 
 export const EchoAceStep = ({
@@ -34,7 +35,6 @@ export const EchoAceStep = ({
   onObservationsChange,
   gainsRatings,
   onGainsRatingChange,
-  aceRatingsStepError,
 }: EchoAceStepProps) => {
   const content = aceStepContent[aceKey];
   const rows = readEchoGainsSubcompetencyRowsForAceStep(aceKey);
@@ -58,15 +58,6 @@ export const EchoAceStep = ({
       </div>
 
       <p className="text-lg leading-relaxed text-on-surface-variant">{content.definition}</p>
-
-      {aceRatingsStepError ? (
-        <p
-          role="alert"
-          className="rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm font-medium text-on-surface"
-        >
-          {aceRatingsStepError}
-        </p>
-      ) : null}
 
       <p className="text-sm text-on-surface-variant">
         Select the appropriate rating on the GAINS scale for each sub-competency (G = Greatly
@@ -174,8 +165,8 @@ export const EchoAceStep = ({
           onChange={(event) => {
             onObservationsChange(event.target.value);
           }}
-          rows={6}
-          className="h-32 w-full resize-none rounded-lg border border-outline-variant bg-surface-container-lowest p-4 text-base leading-relaxed text-on-surface outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary"
+          rows={14}
+          className="min-h-[22rem] w-full resize-y rounded-lg border border-outline-variant bg-surface-container-lowest p-4 text-base leading-relaxed text-on-surface outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary"
           placeholder={content.observationsPlaceholder}
         />
         <EchoAceRefinementSection

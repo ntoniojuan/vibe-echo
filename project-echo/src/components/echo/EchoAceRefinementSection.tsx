@@ -5,6 +5,7 @@ import type { RefinementMcqItem } from "@/lib/refinement/refinementMcqZod";
 import { readRefinementFetchJsonBody } from "@/lib/api/readRefinementFetchJsonBody";
 import { useToast } from "@/hooks/useToast";
 import { EchoRefinementMinimalLoader } from "@/components/echo/EchoRefinementMinimalLoader";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 
 const refinementClientMcqCooldownMs = 2_500;
 const refinementClientApplyCooldownMs = 2_500;
@@ -57,8 +58,8 @@ export const EchoAceRefinementSection = ({
   }, [isRefinementBusy, onRefinementBusyChange]);
 
   const requestMcqs = async () => {
-    const trimmed = rawNotes.trim();
-    if (trimmed.length < 3) {
+    const plainForGate = readPlainTextFromEchoObservationHtml(rawNotes).trim();
+    if (plainForGate.length < 3) {
       showToast("Add a few words in observations before refining.", "error");
       return;
     }
@@ -73,7 +74,7 @@ export const EchoAceRefinementSection = ({
       const response = await fetch("/api/echo/refinement/mcqs", {
         method: "POST",
         headers: readRefinementClientHeaders(),
-        body: JSON.stringify({ rawNotes: trimmed, aceCategory }),
+        body: JSON.stringify({ rawNotes: rawNotes.trim(), aceCategory }),
       });
       const parsed = await readRefinementFetchJsonBody(response);
       if (!parsed.success) {
@@ -206,7 +207,7 @@ export const EchoAceRefinementSection = ({
             onClick={() => {
               void requestMcqs();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-primary-strong px-4 py-2 text-xs font-bold uppercase tracking-wide text-on-primary-strong shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center justify-center rounded-full bg-primary-strong px-4 py-2 text-xs font-bold uppercase tracking-wide text-on-primary-strong shadow-sm transition-colors hover:bg-[#1f2f1f] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {phase === "generating" ? "Generating…" : "Refine with AI"}
           </button>
@@ -274,7 +275,7 @@ export const EchoAceRefinementSection = ({
                 void applyRefinement();
               }}
               disabled={phase === "applying"}
-              className="rounded-full bg-primary px-4 py-2 text-sm font-bold text-on-primary disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-full bg-[#4A634A] px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-[#D1DCD1] hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {phase === "applying" ? "Applying…" : "Apply refinement"}
             </button>

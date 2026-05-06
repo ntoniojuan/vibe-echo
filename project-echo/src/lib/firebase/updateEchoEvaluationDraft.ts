@@ -49,7 +49,13 @@ export const updateEchoEvaluationDraft = async (
     if (!response.ok) {
       const message =
         typeof responsePayload.error === "string" ? responsePayload.error : "Save failed.";
-      throw new Error(message);
+      const debugMessage =
+        typeof (responsePayload as { debugMessage?: unknown }).debugMessage === "string"
+          ? (responsePayload as { debugMessage: string }).debugMessage.trim()
+          : "";
+      const fullMessage =
+        debugMessage.length > 0 ? `${message} ${debugMessage}` : message;
+      throw new Error(fullMessage);
     }
   });
 };

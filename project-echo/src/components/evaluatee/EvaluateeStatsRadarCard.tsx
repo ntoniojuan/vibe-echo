@@ -30,9 +30,9 @@ export const EvaluateeStatsRadarCard = ({
     <div className="relative overflow-hidden rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-echo-card)]">
       <div className="relative z-10 mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-[22px] font-semibold leading-snug text-on-surface">ACE balance</h3>
+          <h3 className="text-[22px] font-semibold leading-snug text-on-surface">ACE Balance</h3>
           <p className="mt-1 text-sm text-on-surface-variant">
-            Average GAINS (1–5) per ACE pillar across all completed evaluations
+            Review your average GAINS scores across every ACE pillar from all completed evaluations.
           </p>
         </div>
       </div>

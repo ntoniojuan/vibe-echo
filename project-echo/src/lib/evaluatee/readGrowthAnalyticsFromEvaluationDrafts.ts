@@ -48,7 +48,6 @@ const lastCompletedCyclesCount = 4;
  *   completed evaluation.
  */
 export const readGrowthAnalyticsFromEvaluationDrafts = (
-  evaluateeDisplayName: string,
   drafts: EchoEvaluationDraftFirestorePayload[],
 ): GrowthAnalyticsFromDraftsResult => {
   const matchingSubmittedCount = drafts.length;
@@ -95,7 +94,6 @@ export const readGrowthAnalyticsFromEvaluationDrafts = (
   return {
     matchingSubmittedCount,
     dashboardProps: {
-      evaluateeDisplayName,
       gainsAveragesByAce: {
         aptitude: readPillarMean(aptitudeCodes),
         character: readPillarMean(characterCodes),

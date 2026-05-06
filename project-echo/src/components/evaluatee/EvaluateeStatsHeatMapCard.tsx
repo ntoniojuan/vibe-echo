@@ -28,7 +28,7 @@ export const EvaluateeStatsHeatMapCard = ({
     <div className="rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-echo-card)]">
       <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <h3 className="text-[22px] font-semibold leading-snug text-on-surface">
-          Competency heat map
+          Competency Heat Map
         </h3>
         <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-on-surface-variant">
           {heatMapLegendItems.map((item) => (
@@ -40,7 +40,7 @@ export const EvaluateeStatsHeatMapCard = ({
         </div>
       </div>
       <p className="mb-4 text-sm text-on-surface-variant">
-        Latest completed evaluation — GAINS score (1–5) per sub-competency.
+        Analyze GAINS scores for each sub-competency based on your latest completed evaluation.
       </p>
       {/*
         Three ACE pillars × four sub-competencies = 3×4 grid.

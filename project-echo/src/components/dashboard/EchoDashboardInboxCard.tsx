@@ -38,7 +38,7 @@ export const EchoDashboardInboxCard = ({
   const showPrimary = primaryActionLabel !== null && onPrimaryAction !== null;
 
   return (
-    <article className="rounded-xl border border-slate-200 bg-echo-elevated-card p-5 shadow-sm dark:border-slate-800">
+    <article className="rounded-xl border border-slate-200 bg-echo-elevated-card p-5 shadow-sm dark:border-slate-600/40 dark:bg-[#1E293B] dark:text-slate-100">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
           {badgeLabel !== null && badgeClassName !== null ? (
@@ -93,7 +93,7 @@ export const EchoDashboardInboxCard = ({
             <button
               type="button"
               onClick={onPrimaryAction}
-              className="shrink-0 self-end rounded-full bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wide text-on-primary shadow-sm hover:opacity-90 min-[480px]:self-center"
+              className="shrink-0 self-end rounded-full bg-[#4A634A] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#D1DCD1] hover:text-slate-900 min-[480px]:self-center"
             >
               {primaryActionLabel}
             </button>

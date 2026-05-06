@@ -23,7 +23,7 @@ export const EchoProfilePageClient = () => {
     <div className="pb-6">
       <EchoAppPageHeader
         title="Profile"
-        description="Your account on Project ECHO."
+        description="Manage your account details and Project ECHO settings."
         showBottomDivider
         trailing={
           <>
@@ -32,7 +32,7 @@ export const EchoProfilePageClient = () => {
           </>
         }
       />
-      <div className="mt-6 rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-800">
+      <div className="mt-6 rounded-xl border border-slate-200 bg-echo-elevated-card p-6 shadow-sm dark:border-slate-600/40 dark:bg-[#1E293B] dark:text-slate-100">
         <dl className="space-y-3 text-sm">
           <div>
             <dt className="font-semibold text-on-surface-variant">Display name</dt>

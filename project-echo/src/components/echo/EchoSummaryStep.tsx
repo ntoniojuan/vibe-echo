@@ -1,5 +1,7 @@
 import type { EchoWizardFormState } from "@/lib/echo/echoWizardFormState";
 import { readEchoGainsSummaryRowsForAceStep } from "@/lib/echo/readEchoGainsSummaryRowsForAceStep";
+import { readEchoObservationForPlainDisplay } from "@/lib/echo/readEchoObservationForPlainDisplay";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 
 type EchoSummaryStepProps = {
   formState: EchoWizardFormState;
@@ -110,9 +112,13 @@ export const EchoSummaryStep = ({
             </li>
           ))}
         </ul>
-        <p className="whitespace-pre-wrap text-on-surface-variant">
-          {formState.aptitudeObservations || "—"}
-        </p>
+        {readPlainTextFromEchoObservationHtml(formState.aptitudeObservations).trim().length > 0 ? (
+          <p className="whitespace-pre-wrap leading-relaxed text-on-surface-variant">
+            {readEchoObservationForPlainDisplay(formState.aptitudeObservations)}
+          </p>
+        ) : (
+          <span className="leading-relaxed text-on-surface-variant">—</span>
+        )}
       </section>
 
       <section className={cardClass}>
@@ -141,9 +147,13 @@ export const EchoSummaryStep = ({
             </li>
           ))}
         </ul>
-        <p className="whitespace-pre-wrap text-on-surface-variant">
-          {formState.characterObservations || "—"}
-        </p>
+        {readPlainTextFromEchoObservationHtml(formState.characterObservations).trim().length > 0 ? (
+          <p className="whitespace-pre-wrap leading-relaxed text-on-surface-variant">
+            {readEchoObservationForPlainDisplay(formState.characterObservations)}
+          </p>
+        ) : (
+          <span className="leading-relaxed text-on-surface-variant">—</span>
+        )}
       </section>
 
       <section className={cardClass}>
@@ -172,9 +182,13 @@ export const EchoSummaryStep = ({
             </li>
           ))}
         </ul>
-        <p className="whitespace-pre-wrap text-on-surface-variant">
-          {formState.effectivenessObservations || "—"}
-        </p>
+        {readPlainTextFromEchoObservationHtml(formState.effectivenessObservations).trim().length > 0 ? (
+          <p className="whitespace-pre-wrap leading-relaxed text-on-surface-variant">
+            {readEchoObservationForPlainDisplay(formState.effectivenessObservations)}
+          </p>
+        ) : (
+          <span className="leading-relaxed text-on-surface-variant">—</span>
+        )}
       </section>
 
       <section className={cardClass}>

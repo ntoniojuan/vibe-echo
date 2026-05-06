@@ -3,6 +3,7 @@ import {
   readCollapsedEvaluationReasonSnippet,
 } from "@/lib/dashboard/readCollapsedEvaluationReasonSnippet";
 import { readRelativeTimeShortLabel } from "@/lib/dashboard/readRelativeTimeShortLabel";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import type { EchoEvaluationDocumentRecord } from "@/lib/firebase/echoEvaluationDocumentRecordType";
 
 type EchoDashboardInboxTabId = "review" | "feedback" | "myEvals";
@@ -133,19 +134,19 @@ export const readEchoDashboardInboxCardViewModel = (
       shortLabel: "Head",
       description:
         "Aptitude (Head) — this chip highlights when the evaluation includes written observations for Aptitude.",
-      filled: payload.aptitudeObservations.trim().length > 0,
+      filled: readPlainTextFromEchoObservationHtml(payload.aptitudeObservations).trim().length > 0,
     },
     {
       shortLabel: "Heart",
       description:
         "Character (Heart) — highlights when written observations for Character are present.",
-      filled: payload.characterObservations.trim().length > 0,
+      filled: readPlainTextFromEchoObservationHtml(payload.characterObservations).trim().length > 0,
     },
     {
       shortLabel: "Hands",
       description:
         "Effectiveness (Hands) — highlights when written observations for Effectiveness are present.",
-      filled: payload.effectivenessObservations.trim().length > 0,
+      filled: readPlainTextFromEchoObservationHtml(payload.effectivenessObservations).trim().length > 0,
     },
   ] as const;
 

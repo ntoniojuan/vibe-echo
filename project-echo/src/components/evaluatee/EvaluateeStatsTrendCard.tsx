@@ -32,10 +32,9 @@ export const EvaluateeStatsTrendCard = ({ overallRatingByCycle }: EvaluateeStats
     <div className="flex flex-col rounded-xl border border-[var(--color-surface-container-high)] bg-[var(--color-surface-container-lowest)] p-6 shadow-[var(--shadow-echo-card)]">
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h3 className="text-[22px] font-semibold leading-snug text-on-surface">Growth trend</h3>
+          <h3 className="text-[22px] font-semibold leading-snug text-on-surface">Growth Trend</h3>
           <p id={growthTrendExplainerId} className="mt-1 text-sm text-on-surface-variant">
-            <span className="font-semibold text-on-surface">Growth trend:</span> Your average ACE
-            scores over the last four evaluation cycles.
+            Track your average ACE score performance over your last four evaluation cycles.
           </p>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-md bg-[var(--color-surface-container-low)] px-2 py-1 text-xs font-bold text-on-surface">

@@ -49,7 +49,7 @@ export const EchoAppPageHeader = ({
           {title}
         </h1>
         {description !== undefined && description.length > 0 ? (
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+          <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
             {description}
           </p>
         ) : null}

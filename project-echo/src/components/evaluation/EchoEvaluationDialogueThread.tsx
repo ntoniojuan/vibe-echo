@@ -101,7 +101,7 @@ export const EchoEvaluationDialogueThread = ({
             onClick={() => {
               void onSend();
             }}
-            className="rounded-full bg-primary px-5 py-2 text-xs font-bold uppercase tracking-wide text-on-primary shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-[#4A634A] px-5 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#D1DCD1] hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSending ? "Sending…" : "Send"}
           </button>

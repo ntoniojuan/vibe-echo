@@ -32,23 +32,14 @@ export const EvaluateeStatsPageShell = () => {
     let cancelled = false;
     setFetchFinished(false);
 
-    const currentUser = user;
-
     void (async () => {
       try {
         const drafts = await readSubmittedEchoEvaluationDraftsForEvaluateeEmail(email);
         if (cancelled) {
           return;
         }
-        const trimmedDisplayName = currentUser?.displayName?.trim();
-        const displayName =
-          trimmedDisplayName && trimmedDisplayName.length > 0
-            ? trimmedDisplayName
-            : email.split("@")[0] ?? "Evaluatee";
-        const { dashboardProps, matchingSubmittedCount } = readGrowthAnalyticsFromEvaluationDrafts(
-          displayName,
-          drafts,
-        );
+        const { dashboardProps, matchingSubmittedCount } =
+          readGrowthAnalyticsFromEvaluationDrafts(drafts);
         setStatsProps(dashboardProps);
         setSubmittedEvalCount(matchingSubmittedCount);
         setFetchError(false);

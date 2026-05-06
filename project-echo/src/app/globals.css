@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
-@theme inline {
+/* Midnight toggle uses `class="dark"` on `<html>` (next-themes). Tailwind v4 defaults `dark:` to
+   `prefers-color-scheme` only; this wires `dark:*` utilities to `.dark` on an ancestor. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Use `@theme` (not `inline`) so color utilities resolve via `var(--color-*)` and pick up
+   `html.dark { ... }` overrides. `@theme inline` bakes literals and breaks Midnight semantics. */
+@theme {
   --font-sans: var(--font-manrope);
   /* Sage workspace + dark sidebar (dashboard shell); marketing may keep --color-background */
   --color-echo-workspace: #e4ebe4;
@@ -8,19 +14,20 @@
   --color-echo-main-canvas: #f8fafc;
   --color-echo-elevated-card: #ffffff;
   --color-echo-card: #f6f8f5;
-  --color-echo-sidebar: #1e293b;
+  /* Deep navy sidebar in Light + Midnight (dashboard branding) */
+  --color-echo-sidebar: #0b1120;
   --color-echo-sidebar-muted: #94a3b8;
   --color-echo-sidebar-fg: #f8fafc;
-  --color-echo-sidebar-active: #8daa91;
+  --color-echo-sidebar-active: #4a634a;
   --color-background: #f8fafc;
   --color-foreground: #111c2c;
-  /* Sage primary (#889F88) + deeper accent for Refine-with-AI emphasis */
-  --color-primary: #889f88;
+  /* MedGrocer Sage strict: primary #4A634A, hover band #D1DCD1, on-primary #FFFFFF */
+  --color-primary: #4a634a;
   --color-on-primary: #ffffff;
-  --color-primary-strong: #5f7260;
+  --color-primary-strong: #354a35;
   --color-on-primary-strong: #ffffff;
-  --color-primary-container: #c8d6c8;
-  --color-on-primary-container: #1f2e21;
+  --color-primary-container: #d1dcd1;
+  --color-on-primary-container: #0f172a;
   --color-secondary: #4f6073;
   --color-on-secondary: #ffffff;
   --color-inverse-surface: #263142;
@@ -74,22 +81,22 @@
 
 html.dark {
   color-scheme: dark;
-  /* Deep navy shell; elevated cards one step lighter */
+  /* Deep navy canvas; elevated cards slate #1E293B; typography ~ slate-100 */
   --color-echo-workspace: #0b1120;
   --color-echo-main-canvas: #0b1120;
-  --color-echo-elevated-card: #131b2b;
+  --color-echo-elevated-card: #1e293b;
   --color-echo-card: #1e293b;
-  --color-echo-sidebar: #070b14;
+  --color-echo-sidebar: #0b1120;
   --color-echo-sidebar-muted: #94a3b8;
-  --color-echo-sidebar-fg: #faf8f5;
-  --color-echo-sidebar-active: #a3c9a8;
+  --color-echo-sidebar-fg: #f8fafc;
+  --color-echo-sidebar-active: #4a634a;
   --color-background: #0b1120;
-  --color-foreground: #f8fafc;
-  --color-primary: #889f88;
+  --color-foreground: #f1f5f9;
+  --color-primary: #4a634a;
   --color-on-primary: #ffffff;
-  --color-primary-strong: #6b826c;
+  --color-primary-strong: #2f3f2f;
   --color-on-primary-strong: #ffffff;
-  --color-primary-container: #a3bda4;
+  --color-primary-container: #d1dcd1;
   --color-on-primary-container: #0b1120;
   --color-secondary: #94a3b8;
   --color-on-secondary: #0b1120;
@@ -101,9 +108,9 @@ html.dark {
   --color-surface-variant: #334155;
   --color-outline: #94a3b8;
   --color-outline-variant: #64748b;
-  --color-on-surface: #f8fafc;
+  --color-on-surface: #f1f5f9;
   --color-on-surface-variant: #b8c5d4;
-  --color-on-background: #f8fafc;
+  --color-on-background: #f1f5f9;
   --color-error-container: #7f1d1d;
   --color-on-error-container: #fecaca;
   --shadow-echo-card: 0 4px 24px rgba(0, 0, 0, 0.35);
@@ -162,7 +169,7 @@ body {
 
 html.dark body {
   background-color: #0b1120;
-  color: #f8fafc;
+  color: #f1f5f9;
 }
 
 @layer base {

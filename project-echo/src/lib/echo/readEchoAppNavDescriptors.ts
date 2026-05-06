@@ -9,8 +9,8 @@ const echoAppNavDescriptors = [
   },
   {
     href: "/evaluatee/stats",
-    label: "My Stats",
-    sidebarLabel: "Stats",
+    label: "Performance",
+    sidebarLabel: "Performance",
     exact: false,
     desktopSlot: "primary" as const,
   },

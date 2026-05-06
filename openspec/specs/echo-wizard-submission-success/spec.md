@@ -13,3 +13,7 @@ After a successful evaluation submission, the application SHALL navigate the eva
 
 - **WHEN** the evaluator activates **Return to Dashboard** from the Submission Success screen  
 - **THEN** the application SHALL navigate to the dashboard route
+
+### Requirement: Success screen elevated card
+
+The checkmark, title, supporting sentence, and **Return to Dashboard** control SHALL be grouped inside a single **elevated card** (rounded container, border, padding, and shadow consistent with other Echo form or summary cards) centered on the workspace canvas so the success state is visually distinct from the raw page background in Light and Midnight.

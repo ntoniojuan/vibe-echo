@@ -1,4 +1,5 @@
 import { FieldValue } from "firebase-admin/firestore";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import { callGeminiJsonGeneration } from "@/lib/gemini/callGeminiJsonGeneration";
 import { readIsGeminiQuotaLimitedError } from "@/lib/gemini/readIsGeminiQuotaLimitedError";
 import { echoEvaluationDraftCollectionId } from "@/lib/firebase/echoEvaluationDraftCollectionId";
@@ -67,7 +68,8 @@ export const applyRefinementFromMcqAnswers = async (
   input: ApplyRefinementInput,
 ): Promise<{ appendedParagraph: string; fullObservationValue: string }> => {
   const trimmedNotes = input.rawNotes.trim();
-  if (trimmedNotes.length < 3) {
+  const trimmedPlainNotes = readPlainTextFromEchoObservationHtml(input.rawNotes).trim();
+  if (trimmedPlainNotes.length < 3) {
     throw new Error("rawNotes must contain at least a few characters.");
   }
 
@@ -94,7 +96,7 @@ export const applyRefinementFromMcqAnswers = async (
 
   const qaSummary = buildQaSummary(input.mcqs, input.answers);
   const userPayload = JSON.stringify({
-    rawNotes: trimmedNotes,
+    rawNotes: trimmedPlainNotes,
     aceCategory: normalizedCategory,
     clarificationAnswers: qaSummary,
   });
@@ -136,14 +138,14 @@ export const applyRefinementFromMcqAnswers = async (
     console.info(
       "Echo refinement apply: using development mock paragraph (Gemini skipped). Set ECHO_REFINEMENT_USE_REAL_GEMINI_IN_DEV=true to call Gemini in dev.",
     );
-    markdownBody = buildDevelopmentMockRefinedParagraph(trimmedNotes, qaSummary);
+    markdownBody = buildDevelopmentMockRefinedParagraph(trimmedPlainNotes, qaSummary);
   } else {
     try {
       markdownBody = await readMarkdownFromGemini();
     } catch (error) {
       if (readIsGeminiQuotaLimitedError(error)) {
         console.warn("Echo refinement apply: quota/rate limit; using mock paragraph.");
-        markdownBody = buildDevelopmentMockRefinedParagraph(trimmedNotes, qaSummary);
+        markdownBody = buildDevelopmentMockRefinedParagraph(trimmedPlainNotes, qaSummary);
       } else {
         throw error;
       }

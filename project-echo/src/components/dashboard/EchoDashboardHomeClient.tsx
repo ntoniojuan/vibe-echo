@@ -218,10 +218,10 @@ export const EchoDashboardHomeClient = () => {
 
   return (
     <div className="pb-10">
-      <div className="sticky top-0 z-40 -mx-6 mb-6 border-b border-slate-200/80 bg-white/80 px-6 pb-4 pt-1 backdrop-blur-md dark:border-slate-800/80 dark:bg-[#0b1120]/70 lg:-mx-8 lg:px-8">
+      <div className="sticky top-0 z-30 -mx-6 mb-6 border-b border-slate-200/30 bg-white/15 px-6 pb-4 pt-1 backdrop-blur-xl dark:border-white/10 dark:bg-[#0B1120]/20 lg:-mx-8 lg:px-8">
         <EchoAppPageHeader
           title="Dashboard"
-          description="Your Evaluations: View your drafts and shared feedback."
+          description="View your evaluation drafts and shared feedback."
           omitOuterMargin
           trailing={
             <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-outline-variant/50 bg-echo-card">
@@ -236,7 +236,7 @@ export const EchoDashboardHomeClient = () => {
           }
         />
 
-        <div className="mt-4 flex gap-6 text-sm font-semibold" role="tablist">
+        <div className="mt-4 flex flex-wrap gap-2 text-sm font-semibold" role="tablist">
           <button
             type="button"
             role="tab"
@@ -244,15 +244,18 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("feedback");
             }}
-            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
+            className={`rounded-md px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#4A634A]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "feedback"
-                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-                : "text-on-surface-variant hover:text-on-surface"
+                ? "bg-[#4A634A] text-white shadow-sm"
+                : "text-on-surface-variant hover:bg-[#D1DCD1] hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-slate-100"
             }`}
           >
             Received
             {hasUnreadReceived ? (
-              <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-primary" aria-hidden />
+              <span
+                className={`ml-1 inline-block h-1.5 w-1.5 rounded-full ${tabId === "feedback" ? "bg-white shadow-sm" : "bg-[#4A634A]"}`}
+                aria-hidden
+              />
             ) : null}
           </button>
           <button
@@ -262,10 +265,10 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("myEvals");
             }}
-            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
+            className={`rounded-md px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#4A634A]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "myEvals"
-                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-                : "text-on-surface-variant hover:text-on-surface"
+                ? "bg-[#4A634A] text-white shadow-sm"
+                : "text-on-surface-variant hover:bg-[#D1DCD1] hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-slate-100"
             }`}
           >
             Sent
@@ -277,10 +280,10 @@ export const EchoDashboardHomeClient = () => {
             onClick={() => {
               setTabId("review");
             }}
-            className={`relative rounded-sm pb-3 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
+            className={`rounded-md px-3 py-2 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#4A634A]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-echo-main-canvas ${
               tabId === "review"
-                ? "text-primary after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary"
-                : "text-on-surface-variant hover:text-on-surface"
+                ? "bg-[#4A634A] text-white shadow-sm"
+                : "text-on-surface-variant hover:bg-[#D1DCD1] hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-slate-100"
             }`}
           >
             Review

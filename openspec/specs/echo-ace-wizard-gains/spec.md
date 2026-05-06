@@ -63,12 +63,39 @@ Final submission MUST require all twelve GAINS values set in addition to any exi
 #### Scenario: Blocked next on incomplete Aptitude
 
 - **WHEN** the user taps Next on step 2 and any of A1–A4 is unset
-- **THEN** the system remains on step 2 and indicates which items need a rating
+- **THEN** the system remains on step 2 and surfaces the need to complete ratings (including via the fixed bottom navigation region per the Incomplete GAINS validation feedback requirement)
 
 #### Scenario: Complete summary
 
 - **WHEN** all steps are complete and the user views the summary
 - **THEN** the system lists all twelve codes with their chosen GAINS level
+
+### Requirement: Incomplete GAINS validation feedback
+
+When **Next** is activated on ACE steps (Aptitude, Character, or Effectiveness) and any sub-competency on **that** step lacks a selected GAINS value, the system SHALL remain on the step. The primary explanation SHALL appear in the **fixed bottom navigation region** (above the Back and Next actions) so the main step content does not reflow when the message appears. The system MAY also show a **toast** with a short complementary message.
+
+#### Scenario: Incomplete Character step
+
+- **WHEN** the user taps Next on the Character (Heart) step and any of C1–C4 is unset
+- **THEN** the UI shows the validation message in the bottom bar and does not insert a full-width alert block in the scrolling column between the step intro and the GAINS cards
+
+### Requirement: Raw observation field affordances
+
+The three observation fields SHALL be **plain multiline** text (not rich text). Each SHALL use a **minimum height** appropriate for several paragraphs of feedback and SHALL allow **vertical resize** so evaluators can expand the field when needed.
+
+#### Scenario: Long notes visible
+
+- **WHEN** the evaluator enters multi-paragraph observations
+- **THEN** the default control height shows materially more than a single short line without requiring scroll inside a minimal textarea
+
+### Requirement: Legacy HTML observation payloads
+
+When a draft’s observation strings contain **HTML** from prior product versions, clients SHALL normalize values loaded into the wizard textarea to **plain text** with **line breaks preserved** where practical (so evaluators do not edit raw tags). Summary and evaluatee read-only surfaces SHALL show observations as plain text with **line breaks preserved** (for example `white-space: pre-wrap`).
+
+#### Scenario: Draft with HTML notes opens in wizard
+
+- **WHEN** Firestore returns observation fields that look like HTML
+- **THEN** the wizard textarea and downstream read-only views show human-readable plain text rather than markup
 
 ### Requirement: Raw observation notes preserved
 

@@ -1,3 +1,4 @@
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import { callGeminiJsonGeneration } from "@/lib/gemini/callGeminiJsonGeneration";
 import { readIsGeminiQuotaLimitedError } from "@/lib/gemini/readIsGeminiQuotaLimitedError";
 import { normalizeEchoAceCategory } from "@/lib/refinement/echoAceCategoryNormalized";
@@ -35,8 +36,8 @@ const parseAndValidateMcqs = (jsonText: string) => {
 export const generateRefinementMCQs = async (
   input: GenerateRefinementMcqsInput,
 ): Promise<RefinementMcqItem[]> => {
-  const trimmedNotes = input.rawNotes.trim();
-  if (trimmedNotes.length < 3) {
+  const trimmedPlainNotes = readPlainTextFromEchoObservationHtml(input.rawNotes).trim();
+  if (trimmedPlainNotes.length < 3) {
     throw new Error("rawNotes must contain at least a few characters.");
   }
 
@@ -55,7 +56,7 @@ export const generateRefinementMCQs = async (
   }
 
   const userPayload = JSON.stringify({
-    rawNotes: trimmedNotes,
+    rawNotes: trimmedPlainNotes,
     aceCategory: categoryLabel,
   });
 

@@ -25,12 +25,12 @@ export const EchoAppBottomNav = () => {
             aria-label={item.label}
             title={item.label}
             className={`flex min-h-11 min-w-11 flex-1 flex-col items-center justify-center px-2 py-1 ${
-              active ? "text-primary" : "text-on-surface-variant"
+              active ? "text-white" : "text-on-surface-variant"
             }`}
           >
             <span
-              className={`flex h-11 w-11 items-center justify-center rounded-full ${
-                active ? "bg-primary/15" : "bg-transparent"
+              className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
+                active ? "bg-[#4A634A] text-white shadow-sm" : "bg-transparent"
               }`}
             >
               <Icon className="h-6 w-6" strokeWidth={2} aria-hidden />

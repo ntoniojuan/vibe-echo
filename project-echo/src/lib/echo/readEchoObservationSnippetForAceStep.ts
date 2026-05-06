@@ -1,4 +1,5 @@
 import type { EchoAceStepKey } from "@/lib/echo/echoAceStepKeyType";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import type { EchoEvaluationDraftFirestorePayload } from "@/lib/firebase/readEchoEvaluationDraft";
 
 const defaultMaxLength = 160;
@@ -14,7 +15,7 @@ export const readEchoObservationSnippetForAceStep = (
   } else if (aceKey === "character") {
     raw = draft.characterObservations;
   }
-  const collapsed = raw.replace(/\s+/g, " ").trim();
+  const collapsed = readPlainTextFromEchoObservationHtml(raw).replace(/\s+/g, " ").trim();
   if (collapsed.length <= maxLength) {
     return collapsed;
   }

@@ -38,3 +38,16 @@ On submit, the same document (or submission flow defined by the product) SHALL r
 
 - **WHEN** the user submits a completed evaluation
 - **THEN** `status` becomes submitted and all twelve ratings remain stored on that document
+
+### Requirement: Save-draft primary write and audit best-effort
+
+The Next.js **`POST /api/save-draft`** handler (or equivalent) SHALL persist the evaluator’s draft by writing the **`echoEvaluationDrafts/{evaluationDraftId}`** document as the **primary** operation. When an audit entry in **`system_logs`** is written for the same user action, that write SHALL occur **after** the draft write and SHALL be **non-blocking for client success**: if the audit write fails but the draft write succeeded, the server SHALL still respond with success and the client SHALL treat the save as OK.
+
+#### Scenario: Audit log fails after draft saves
+
+- **WHEN** the draft `set`/`merge` succeeds and the subsequent `system_logs` write throws
+- **THEN** the API returns a successful response (for example HTTP 200 with `ok: true`) and the draft in Firestore reflects the saved fields
+
+### Requirement: Save error diagnostics in development
+
+On an irrecoverable failure writing the **draft document** itself, the server SHOULD log details server-side. In **development** environments, error responses MAY include a **debug message** or Firestore-oriented code in the JSON body to speed up local diagnosis without exposing internals in production defaults.

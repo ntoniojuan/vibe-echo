@@ -1,5 +1,4 @@
 export type EvaluateeStatsDashboardProps = {
-  evaluateeDisplayName: string;
   gainsAveragesByAce: {
     aptitude: number;
     character: number;

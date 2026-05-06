@@ -10,7 +10,7 @@ import { readEchoBrandFooterAttribution } from "@/lib/echo/readEchoBrandFooterAt
 
 const EchoSidebarLogoMark = () => (
   <span
-    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-echo-sidebar-active"
+    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#D1DCD1]"
     aria-hidden
   >
     <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -77,7 +77,7 @@ export const EchoAppSidebar = () => {
       <div className="shrink-0 px-3 pb-6">
         <Link
           href="/evaluation"
-          className="flex w-full items-center justify-center rounded-lg bg-primary px-3 py-2.5 text-center text-sm font-bold text-on-primary shadow-sm hover:opacity-90"
+          className="flex w-full items-center justify-center rounded-lg bg-[#4A634A] px-3 py-2.5 text-center text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#D1DCD1] hover:text-slate-900"
         >
           + New Evaluation
         </Link>
@@ -96,7 +96,7 @@ export const EchoAppSidebar = () => {
               href={item.href}
               className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
                 active
-                  ? "bg-white/10 text-echo-sidebar-active before:absolute before:right-0 before:top-1/2 before:h-8 before:w-0.5 before:-translate-y-1/2 before:rounded-l before:bg-echo-sidebar-active"
+                  ? "bg-[#4A634A] text-white shadow-sm"
                   : "text-echo-sidebar-muted hover:bg-white/5 hover:text-echo-sidebar-fg"
               }`}
             >
@@ -114,7 +114,7 @@ export const EchoAppSidebar = () => {
             href={profileItem.href}
             className={`relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors ${
               readEchoAppNavItemIsActive(pathname, profileItem)
-                ? "bg-white/10 text-echo-sidebar-active before:absolute before:right-0 before:top-1/2 before:h-8 before:w-0.5 before:-translate-y-1/2 before:rounded-l before:bg-echo-sidebar-active"
+                ? "bg-[#4A634A] text-white shadow-sm"
                 : "text-echo-sidebar-muted hover:bg-white/5 hover:text-echo-sidebar-fg"
             }`}
           >

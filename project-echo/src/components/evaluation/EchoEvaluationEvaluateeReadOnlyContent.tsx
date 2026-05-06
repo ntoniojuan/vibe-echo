@@ -2,6 +2,8 @@
 
 import type { EchoWizardFormState } from "@/lib/echo/echoWizardFormState";
 import { readEchoGainsSummaryRowsForAceStep } from "@/lib/echo/readEchoGainsSummaryRowsForAceStep";
+import { readEchoObservationForPlainDisplay } from "@/lib/echo/readEchoObservationForPlainDisplay";
+import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 
 const cardClass =
   "rounded-2xl border border-surface-container-high bg-surface-container-lowest p-6 shadow-[var(--shadow-echo-card)]";
@@ -38,8 +40,8 @@ export const EchoEvaluationEvaluateeReadOnlyContent = ({
           ))}
         </ul>
         <p className="whitespace-pre-wrap text-sm leading-relaxed text-on-surface-variant">
-          {formState.aptitudeObservations.trim().length > 0
-            ? formState.aptitudeObservations
+          {readPlainTextFromEchoObservationHtml(formState.aptitudeObservations).trim().length > 0
+            ? readEchoObservationForPlainDisplay(formState.aptitudeObservations)
             : "—"}
         </p>
       </section>
@@ -60,8 +62,8 @@ export const EchoEvaluationEvaluateeReadOnlyContent = ({
           ))}
         </ul>
         <p className="whitespace-pre-wrap text-sm leading-relaxed text-on-surface-variant">
-          {formState.characterObservations.trim().length > 0
-            ? formState.characterObservations
+          {readPlainTextFromEchoObservationHtml(formState.characterObservations).trim().length > 0
+            ? readEchoObservationForPlainDisplay(formState.characterObservations)
             : "—"}
         </p>
       </section>
@@ -82,8 +84,8 @@ export const EchoEvaluationEvaluateeReadOnlyContent = ({
           ))}
         </ul>
         <p className="whitespace-pre-wrap text-sm leading-relaxed text-on-surface-variant">
-          {formState.effectivenessObservations.trim().length > 0
-            ? formState.effectivenessObservations
+          {readPlainTextFromEchoObservationHtml(formState.effectivenessObservations).trim().length > 0
+            ? readEchoObservationForPlainDisplay(formState.effectivenessObservations)
             : "—"}
         </p>
       </section>
