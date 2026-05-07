@@ -17,6 +17,9 @@ const labelClass =
   "text-xs font-bold uppercase tracking-wider text-on-surface-variant";
 const cardClass =
   "rounded-2xl border border-surface-container-high bg-surface-container-lowest p-6 shadow-[var(--shadow-echo-card)]";
+/** Primary green reads poorly on midnight cards; use light sage in dark mode. */
+const summaryEditButtonClass =
+  "shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-surface-container-low dark:border-primary-container/45 dark:text-primary-container dark:hover:bg-primary-container/15";
 
 export const EchoSummaryStep = ({
   formState,
@@ -53,7 +56,7 @@ export const EchoSummaryStep = ({
             onClick={() => {
               onEditSection(0);
             }}
-            className="shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-semibold text-primary hover:bg-surface-container-low"
+            className={summaryEditButtonClass}
           >
             Edit
           </button>
@@ -94,7 +97,7 @@ export const EchoSummaryStep = ({
             onClick={() => {
               onEditSection(1);
             }}
-            className="shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-semibold text-primary hover:bg-surface-container-low"
+            className={summaryEditButtonClass}
           >
             Edit
           </button>
@@ -106,7 +109,7 @@ export const EchoSummaryStep = ({
               className="flex flex-wrap items-baseline justify-between gap-2 text-sm"
             >
               <span className="font-semibold text-on-surface">
-                <span className="text-primary">{row.code}</span> {row.title}
+                <span className="text-primary dark:text-primary-container">{row.code}</span> {row.title}
               </span>
               <span className="shrink-0 text-on-surface-variant">{row.ratingLabel}</span>
             </li>
@@ -129,7 +132,7 @@ export const EchoSummaryStep = ({
             onClick={() => {
               onEditSection(2);
             }}
-            className="shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-semibold text-primary hover:bg-surface-container-low"
+            className={summaryEditButtonClass}
           >
             Edit
           </button>
@@ -141,7 +144,7 @@ export const EchoSummaryStep = ({
               className="flex flex-col items-baseline justify-between gap-2 text-sm sm:flex-row sm:items-center"
             >
               <span className="font-semibold text-on-surface">
-                <span className="text-primary">{row.code}</span> {row.title}
+                <span className="text-primary dark:text-primary-container">{row.code}</span> {row.title}
               </span>
               <span className="shrink-0 text-on-surface-variant">{row.ratingLabel}</span>
             </li>
@@ -164,7 +167,7 @@ export const EchoSummaryStep = ({
             onClick={() => {
               onEditSection(3);
             }}
-            className="shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-semibold text-primary hover:bg-surface-container-low"
+            className={summaryEditButtonClass}
           >
             Edit
           </button>
@@ -176,7 +179,7 @@ export const EchoSummaryStep = ({
               className="flex flex-col items-baseline justify-between gap-2 text-sm sm:flex-row sm:items-center"
             >
               <span className="font-semibold text-on-surface">
-                <span className="text-primary">{row.code}</span> {row.title}
+                <span className="text-primary dark:text-primary-container">{row.code}</span> {row.title}
               </span>
               <span className="shrink-0 text-on-surface-variant">{row.ratingLabel}</span>
             </li>

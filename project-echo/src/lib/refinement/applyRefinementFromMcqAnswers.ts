@@ -1,4 +1,5 @@
 import { FieldValue } from "firebase-admin/firestore";
+import type { GainsSubcompetencyCode } from "@/lib/echo/gainsSubcompetencyCodeType";
 import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import { callGeminiJsonGeneration } from "@/lib/gemini/callGeminiJsonGeneration";
 import { readIsGeminiQuotaLimitedError } from "@/lib/gemini/readIsGeminiQuotaLimitedError";
@@ -9,6 +10,7 @@ import { readEchoObservationFieldNameForAceCategory } from "@/lib/refinement/rea
 import { buildDevelopmentMockRefinedParagraph } from "@/lib/refinement/buildDevelopmentMockRefinedParagraph";
 import { readShouldUseRefinementDevelopmentMock } from "@/lib/refinement/readShouldUseRefinementDevelopmentMock";
 import { readEchoRefinementObservationMarkdownFromSections } from "@/lib/refinement/readEchoRefinementObservationMarkdownFromSections";
+import { readRefinementGainsPromptSummaryForPillar } from "@/lib/refinement/readRefinementGainsPromptSummaryForPillar";
 import {
   refinedStructuredWrapperSchema,
   type RefinementMcqItem,
@@ -17,14 +19,21 @@ import {
 const refinementSystemPrompt = `SYSTEM: HR Performance Evaluation Assistant (Evaluation Prompt v260430 — MedGrocer Project ECHO).
 
 ROLE & OBJECTIVE
-You process supervisor raw notes PLUS their multiple-choice clarification answers for ONE ACE domain at a time (given in the JSON user payload as aceCategory). Output structured, actionable evaluation content — not a single blob paragraph.
+You process supervisor raw notes, their multiple-choice clarification answers, and GAINS scores for ONE ACE domain at a time (given in the JSON user payload as aceCategory). Output structured, actionable evaluation content — not a single blob paragraph.
 
 INITIAL CONTENT RULES
-• Ground ONLY in rawNotes and clarificationAnswers. Do not invent incidents, stakeholders, or outcomes.
+• Ground ONLY in rawNotes, clarificationAnswers, and the GAINS scores for this pillar (gainsRatingsByCode and gainsSummary in the user JSON). Do not invent incidents, stakeholders, or outcomes.
 • Anonymization: never use the evaluatee's real name; refer to them as "Evaluatee". Use they/them/their.
 
 TONE
 • Conversational, supportive, plain language. Avoid stiff corporate jargon and heavy HR-speak.
+
+GAINS ALIGNMENT
+• Ensure the structured JSON (especially observations and areasToImprove) justifies and aligns with the GAINS scores provided. Use scores as the evaluator’s calibration; use rawNotes and clarificationAnswers as the only behavioral evidence.
+• For any sub-competency scored 1–2: emphasize honest, specific areas for growth tied to the notes in the appropriate sections.
+• For any sub-competency scored 4–5: celebrate specific strengths tied to the notes in the appropriate sections.
+• For scores of 3: balanced tone unless the notes clearly lean one way.
+• If the notes are too thin to justify a score, say so briefly in observations instead of fabricating examples.
 
 ACE (single domain per request)
 • Aptitude (Head): skills, comprehension, clarity, data-literacy, decision-making.
@@ -33,7 +42,7 @@ ACE (single domain per request)
 
 PROCESSING
 • 1–3 bullet-style lines per output field when evidence supports them; fewer is fine if the transcript is thin.
-• If praise-only, add fair constructive "focus more on" edges grounded in what was said.
+• Align tone with GAINS: do not sound uniformly critical when scores are mostly 4–5, or uniformly celebratory when scores include 1–2, unless clarification answers justify an exception.
 • If a section truly has no basis in the input, write one honest line such as: "No specific additional detail in the notes for this section."
 
 OUTPUT — JSON ONLY with EXACT keys (camelCase):
@@ -52,6 +61,7 @@ type ApplyRefinementInput = {
   draftId: string;
   rawNotes: string;
   aceCategory: string;
+  gainsRatingsForPillar: Record<GainsSubcompetencyCode, number>;
   mcqs: RefinementMcqItem[];
   answers: string[];
 };
@@ -95,10 +105,16 @@ export const applyRefinementFromMcqAnswers = async (
   }
 
   const qaSummary = buildQaSummary(input.mcqs, input.answers);
+  const gainsSummary = readRefinementGainsPromptSummaryForPillar(
+    normalizedCategory,
+    input.gainsRatingsForPillar,
+  );
   const userPayload = JSON.stringify({
     rawNotes: trimmedPlainNotes,
     aceCategory: normalizedCategory,
     clarificationAnswers: qaSummary,
+    gainsRatingsByCode: input.gainsRatingsForPillar,
+    gainsSummary,
   });
 
   const readMarkdownFromGemini = async (): Promise<string> => {

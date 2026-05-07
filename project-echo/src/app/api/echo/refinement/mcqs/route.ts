@@ -31,6 +31,7 @@ export const POST = async (request: Request) => {
     const items = await generateRefinementMCQs({
       rawNotes: parsed.data.rawNotes,
       aceCategory: parsed.data.aceCategory,
+      gainsRatingsForPillar: parsed.data.gainsRatingsForPillar,
     });
     return NextResponse.json({ items });
   } catch (error) {

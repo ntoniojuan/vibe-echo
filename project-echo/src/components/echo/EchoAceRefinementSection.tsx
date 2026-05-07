@@ -6,6 +6,10 @@ import { readRefinementFetchJsonBody } from "@/lib/api/readRefinementFetchJsonBo
 import { useToast } from "@/hooks/useToast";
 import { EchoRefinementMinimalLoader } from "@/components/echo/EchoRefinementMinimalLoader";
 import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
+import type { EchoAceStepKey } from "@/lib/echo/echoAceStepKeyType";
+import type { GainsSubcompetencyCode } from "@/lib/echo/gainsSubcompetencyCodeType";
+import type { GainsLevel } from "@/lib/echo/gainsLevelType";
+import { readRefinementGainsRatingsForPillarPayload } from "@/lib/echo/readRefinementGainsRatingsForPillarPayload";
 
 const refinementClientMcqCooldownMs = 2_500;
 const refinementClientApplyCooldownMs = 2_500;
@@ -21,7 +25,8 @@ const readRefinementClientHeaders = (): Record<string, string> => {
 
 type EchoAceRefinementSectionProps = {
   draftId: string;
-  aceCategory: string;
+  aceCategory: EchoAceStepKey;
+  gainsRatings: Partial<Record<GainsSubcompetencyCode, GainsLevel>>;
   rawNotes: string;
   /** Server returns the full observation field after Firestore append; local state is replaced with that authoritative string. */
   onSyncObservationsFromRefinement: (nextValue: string) => void;
@@ -32,6 +37,7 @@ type EchoAceRefinementSectionProps = {
 export const EchoAceRefinementSection = ({
   draftId,
   aceCategory,
+  gainsRatings,
   rawNotes,
   onSyncObservationsFromRefinement,
   onRefinementBusyChange,
@@ -63,6 +69,14 @@ export const EchoAceRefinementSection = ({
       showToast("Add a few words in observations before refining.", "error");
       return;
     }
+    const gainsPayload = readRefinementGainsRatingsForPillarPayload(aceCategory, gainsRatings);
+    if (!gainsPayload.ok) {
+      showToast(
+        `Complete all GAINS ratings for this step (${gainsPayload.missingCodes.join(", ")}) before refining.`,
+        "error",
+      );
+      return;
+    }
     const mcqNow = Date.now();
     if (mcqNow - lastMcqRequestAtRef.current < refinementClientMcqCooldownMs) {
       showToast("Please wait a couple seconds between refine requests.", "error");
@@ -74,7 +88,11 @@ export const EchoAceRefinementSection = ({
       const response = await fetch("/api/echo/refinement/mcqs", {
         method: "POST",
         headers: readRefinementClientHeaders(),
-        body: JSON.stringify({ rawNotes: rawNotes.trim(), aceCategory }),
+        body: JSON.stringify({
+          rawNotes: rawNotes.trim(),
+          aceCategory,
+          gainsRatingsForPillar: gainsPayload.gainsRatingsForPillar,
+        }),
       });
       const parsed = await readRefinementFetchJsonBody(response);
       if (!parsed.success) {
@@ -123,6 +141,14 @@ export const EchoAceRefinementSection = ({
       showToast("Please answer every question.", "error");
       return;
     }
+    const gainsPayload = readRefinementGainsRatingsForPillarPayload(aceCategory, gainsRatings);
+    if (!gainsPayload.ok) {
+      showToast(
+        `Complete all GAINS ratings for this step (${gainsPayload.missingCodes.join(", ")}) before applying refinement.`,
+        "error",
+      );
+      return;
+    }
     const applyNow = Date.now();
     if (applyNow - lastApplyRequestAtRef.current < refinementClientApplyCooldownMs) {
       showToast("Please wait a couple seconds before applying again.", "error");
@@ -138,6 +164,7 @@ export const EchoAceRefinementSection = ({
           draftId,
           rawNotes: rawNotes.trim(),
           aceCategory,
+          gainsRatingsForPillar: gainsPayload.gainsRatingsForPillar,
           mcqs,
           answers: selectedByIndex,
         }),

@@ -32,6 +32,7 @@ export const POST = async (request: Request) => {
       draftId: parsed.data.draftId,
       rawNotes: parsed.data.rawNotes,
       aceCategory: parsed.data.aceCategory,
+      gainsRatingsForPillar: parsed.data.gainsRatingsForPillar,
       mcqs: parsed.data.mcqs,
       answers: parsed.data.answers,
     });

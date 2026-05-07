@@ -172,6 +172,7 @@ export const EchoAceStep = ({
         <EchoAceRefinementSection
           draftId={draftId}
           aceCategory={aceKey}
+          gainsRatings={gainsRatings}
           rawNotes={observations}
           onSyncObservationsFromRefinement={onObservationsChange}
           onRefinementBusyChange={setIsRefinementBusy}

@@ -1,8 +1,10 @@
+import type { GainsSubcompetencyCode } from "@/lib/echo/gainsSubcompetencyCodeType";
 import { readPlainTextFromEchoObservationHtml } from "@/lib/echo/readPlainTextFromEchoObservationHtml";
 import { callGeminiJsonGeneration } from "@/lib/gemini/callGeminiJsonGeneration";
 import { readIsGeminiQuotaLimitedError } from "@/lib/gemini/readIsGeminiQuotaLimitedError";
 import { normalizeEchoAceCategory } from "@/lib/refinement/echoAceCategoryNormalized";
 import { readDevelopmentMockRefinementMcqItems } from "@/lib/refinement/readDevelopmentMockRefinementMcqItems";
+import { readRefinementGainsPromptSummaryForPillar } from "@/lib/refinement/readRefinementGainsPromptSummaryForPillar";
 import { readShouldUseRefinementDevelopmentMock } from "@/lib/refinement/readShouldUseRefinementDevelopmentMock";
 import {
   refinementMcqItemsWrapperSchema,
@@ -17,6 +19,7 @@ Rules:
 - Each options array MUST have 4 clear, mutually distinct choices unless the question truly only needs 2—prefer 4.
 - Questions should clarify vague notes (e.g. one-time vs pattern, scope, stakeholder impact, frequency, evidence)—grounded ONLY in what appears in rawNotes; do not invent incidents.
 - Tailor all questions to the ACE category provided: Aptitude (Head), Character (Heart), or Effectiveness (Hands).
+- The user JSON includes gainsRatingsByCode (integers 1–5 per sub-competency on this pillar) and gainsSummary. Respect that score profile: if notes are thin or seem to conflict with the ratings, ask clarifying questions—do not ignore GAINS or assume the scores are wrong.
 - Prefer questions that disambiguate details needed for observations, concrete next steps, when behaviors should appear, and what support the team will provide.
 - Professional, neutral tone.`;
 
@@ -26,6 +29,7 @@ Return ONLY corrected JSON: {"items":[...]} with exactly 5 items. No markdown, n
 type GenerateRefinementMcqsInput = {
   rawNotes: string;
   aceCategory: string;
+  gainsRatingsForPillar: Record<GainsSubcompetencyCode, number>;
 };
 
 const parseAndValidateMcqs = (jsonText: string) => {
@@ -55,9 +59,15 @@ export const generateRefinementMCQs = async (
     categoryLabel = "Effectiveness (Hands)";
   }
 
+  const gainsSummary = readRefinementGainsPromptSummaryForPillar(
+    normalizedCategory,
+    input.gainsRatingsForPillar,
+  );
   const userPayload = JSON.stringify({
     rawNotes: trimmedPlainNotes,
     aceCategory: categoryLabel,
+    gainsRatingsByCode: input.gainsRatingsForPillar,
+    gainsSummary,
   });
 
   if (readShouldUseRefinementDevelopmentMock()) {
